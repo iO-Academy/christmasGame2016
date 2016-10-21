@@ -1,56 +1,66 @@
 <?php
 $response = array(
     'success' => false,
-    'message' => 'No action passed'
+    'message' => 'No action passed',
+    'data' => array()
 );
 if (!empty($_POST['action'])) {
     require_once('includes/dbcon.php');
 
     $action = $_POST['action'];
-    session_start();
     switch ($action) {
         case 'createUser':
+
+            $response['message'] = 'Missing parameters for this action';
 
             if (!empty($_POST['userName']) && !empty($_POST['userEmail'])) {
                 $name = $_POST['userName'];
                 $email = $_POST['userEmail'];
 
                 try {
-                    $query = 'SELECT `users`.`id`, max(`attempt`) AS "attempts" FROM users LEFT JOIN `plays` ON users.id = plays.user WHERE `email` = "' . $email . '";';
+                    $query = 'SELECT `users`.`id`, max(`attempt`) AS "attempts" FROM users LEFT JOIN `plays` ON users.id = plays.user WHERE `email` = :email;';
                     $conn = $db->prepare($query);
-                    $conn->execute();
+                    $conn->execute([':email' => $email]);
                     $curUser = $conn->fetch(PDO::FETCH_ASSOC);
-                    if (!empty($curUser)) {
+                    if (!empty($curUser) && !empty($curUser['id'])) {
                         $attempts = (!empty($curUser['attempts']) ?: "0");
                         $id = $curUser['id'];
 
                         $response = array(
                             'success' => true,
                             'message' => 'User account exists',
-                            'curAttempt' => $attempts,
-                            'uid' => $id
+                            'data' => array(
+                                'curAttempt' => $attempts,
+                                'uid' => $id
+                            )
                         );
                         break;
                     }
-                    $query = 'INSERT INTO `users` (`name`, `email`) VALUES ("' . $name . '", "' . $email . '")';
-                    $db->exec($query);
+                    $query = 'INSERT INTO `users` (`name`, `email`) VALUES (?, ?)';
+                    $conn = $db->prepare($query);
+                    $conn->execute([$name, $email]);
                     $id = $db->lastInsertId();// id from database
                     $response = array(
                         'success' => true,
                         'message' => 'User saved',
-                        'curAttempt' => "0",
-                        'uid' => $id
+                        'data' => array(
+                            'curAttempt' => "0",
+                            'uid' => $id
+                        )
                     );
                 } catch (Exception $e) {
                     $response = array(
                         'success' => false,
-                        'message' => $e->getMessage()
+                        'message' => 'An unexpected error occurred, please try again', //$e->getMessage()
+                        'data' => array()
                     );
                 }
             }
             break;
 
         case 'saveAttempt':
+
+            $response['message'] = 'Missing parameters for this action';
 
             if (!empty($_POST['uid']) && !empty('time') && !empty($_POST['attempt'])) {
 
@@ -64,16 +74,19 @@ if (!empty($_POST['action'])) {
 
                     // save current level details
                     $query = 'INSERT INTO `plays` (`user`, `attempt`, `time`)
-                        VALUES ("' . $user . '", "' . $attempt . '", "' . $time . '")';
-                    $db->exec($query);
+                        VALUES (?, ?, ?)';
+                    $conn = $db->prepare($query);
+                    $conn->execute([$user, $attempt, $time]);
                     $response = array(
                         'success' => true,
-                        'message' => 'Saved Successfully'
+                        'message' => 'Saved Successfully',
+                        'data' => array()
                     );
                 } catch (Exception $e) {
                     $response = array(
                         'success' => false,
-                        'message' => 'An unexpected error occurred' // $e->getMessage()
+                        'message' => 'An unexpected error occurred', // $e->getMessage()
+                        'data' => array()
                     );
                 }
             }
@@ -83,26 +96,35 @@ if (!empty($_POST['action'])) {
         case 'getLeaderboard':
 
             try {
-                $query = 'SELECT `name`, `time` FROM users LEFT JOIN plays ON users.id = plays.user ORDER BY time LIMIT 5';
+                $query = 'SELECT `name`,`time` FROM users LEFT JOIN plays ON users.id = plays.user ORDER BY time LIMIT 5';
                 $conn = $db->prepare($query);
                 $conn->execute();
                 $leaderboard = $conn->fetchAll(PDO::FETCH_ASSOC);
 
+                foreach($leaderboard as $k => $player) {
+                    $leaderboard[$k]['time'] = strtotime('1970-01-01 ' . $player['time'] . 'GMT');
+                }
+
                 $response = array(
                     'success' => true,
                     'message' => 'Leaderboard attached',
-                    'data' => $leaderboard
+                    'data' => array(
+                        'leaderboard' => $leaderboard
+                    )
                 );
 
             } catch (Exception $e) {
                 $response = array(
                     'success' => false,
-                    'message' => 'An unexpected error occurred' // $e->getMessage()
+                    'message' => 'An unexpected error occurred', // $e->getMessage()
+                    'data' => array()
                 );
             }
 
 
             break;
+        default:
+            $response['message'] = 'Invalid action passed';
 
     }
 
