@@ -96,7 +96,7 @@ if (!empty($_POST['action'])) {
         case 'getLeaderboard':
 
             try {
-                $query = 'SELECT `name`,`time` FROM users LEFT JOIN plays ON users.id = plays.user ORDER BY time LIMIT 5';
+                $query = 'SELECT `name`,`time` FROM users LEFT JOIN plays ON users.id = plays.user ORDER BY time DESC LIMIT 5';
                 $conn = $db->prepare($query);
                 $conn->execute();
                 $leaderboard = $conn->fetchAll(PDO::FETCH_ASSOC);
