@@ -1,3 +1,12 @@
 * {
     box-sizing: border-box;
 }
+
+#canvas {
+    background-color: #3a5b8c;
+    padding: 40px;
+    position: relative;
+    width: 900px;
+    height: 600px;
+    margin: auto;
+}
