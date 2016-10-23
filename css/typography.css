@@ -13,3 +13,10 @@ form,
 .input {
     font-size: 25px;
 }
+
+#intro_text {
+    color: #3a5b8c;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
