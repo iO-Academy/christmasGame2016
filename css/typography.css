@@ -8,3 +8,8 @@ h1 {
     font-size: 60px;
     font-weight: normal;
 }
+
+form,
+.input {
+    font-size: 25px;
+}
