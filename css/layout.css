@@ -29,3 +29,9 @@ form {
     right: 120px;
     transform: translateY(-50%);
 }
+
+#intro_text {
+    position: absolute;
+    width: 250px;
+    top: 165px;
+}
