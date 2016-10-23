@@ -20,3 +20,12 @@ form {
     margin-bottom: 15px;
     width: 360px;
 }
+
+#intro {
+    position: absolute;
+    width: 250px;
+    height: 382px;
+    top: 50%;
+    right: 120px;
+    transform: translateY(-50%);
+}
