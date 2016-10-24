@@ -15,7 +15,7 @@ form {
     margin-top: 70px;
 }
 
-.input {
+form input {
     border: 2px solid #808080;
     margin-bottom: 15px;
     width: 360px;
