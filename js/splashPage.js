@@ -2,32 +2,22 @@ $(function() {
 
     $('form').submit(function() {
         var obj = {}
-        obj.name = $('#username').val()
-        obj.email = $('#email').val()
+        obj.userName = $('#username').val()
+        obj.userEmail = $('#email').val()
+        obj.action = "createUser"
 
-        if (validateForm()) {
+        if (validateForm(obj.userName, obj.userEmail)) {
             $.ajax({
                 method: "POST",
-                url: "POST.php",
+                url: "api/",
                 data: obj
             })
-                .done(
-                    function (a) {
-                        console.log(a)
-
-                    })
-            return false;
+            $('#error').text("")
         } else {
-            $('#email').insertAfter("Invalid username or email. Please try again.")
+            $('#error').text("Invalid username or email. Please try again.")
         }
+        return false
     })
-
-
-
-
-
-
-
 
 
 
