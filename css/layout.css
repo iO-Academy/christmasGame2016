@@ -9,6 +9,7 @@
     width: 900px;
     height: 600px;
     margin: auto;
+    overflow: hidden;
 }
 
 #canvas.game {
@@ -48,6 +49,7 @@ form input {
 #game {
     border: 5px solid #ffffff;
     height: 485px;
+    overflow: hidden;
     position: relative;
 }
 

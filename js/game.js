@@ -1,10 +1,22 @@
 $(function() {
-    $(document).keydown(function (e) {
-        var levelNo
+    $(document).keydown(function(e) {
+        var levelNo = $(".selection").length
         var rand = Math.ceil(Math.random() * levelNo)
-        // console.log(rand)
+
+        var selLev
+        var levWidth
+        var canvasWidth
         if (e.keyCode == 32) {
-            // $("#selection" + )
+            selLev = "#selection" + rand
+            levWidth = $(selLev).width()
+            canvasWidth = $("#game").width()
+            $(selLev).appendTo("#game")
+            $(selLev).css({
+                "left": canvasWidth
+            })
+            $(selLev).animate({
+                left: -(levWidth - canvasWidth + 50)
+                }, 3000, "linear")
         }
     })
 
