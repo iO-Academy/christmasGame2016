@@ -15,10 +15,11 @@ form {
     margin-top: 70px;
 }
 
-.input {
+form input {
     border: 2px solid #808080;
     margin-bottom: 15px;
     width: 360px;
+    display: block;
 }
 
 #intro {
@@ -26,11 +27,17 @@ form {
     width: 250px;
     height: 382px;
     top: 109px;
-    right: 120px;
+    right: 85px;
 }
 
-#intro_text {
+#intro p {
     position: absolute;
-    width: 250px;
-    top: 165px;
+    width: 200px;
+    top: 140px;
+    right: 25px;
+}
+
+#error {
+    height: 30px;
+    color: #ec8024;
 }
