@@ -1,24 +1,35 @@
 $(function() {
-    $(document).keydown(function(e) {
-        var levelNo = $(".selection").length
-        var rand = Math.ceil(Math.random() * levelNo)
 
-        var selLev
-        var levWidth
-        var canvasWidth
-        if (e.keyCode == 32) {
-            selLev = "#selection" + rand
-            levWidth = $(selLev).width()
-            canvasWidth = $("#game").width()
-            $(selLev).appendTo("#game")
-            $(selLev).css({
+    function gameStart() {
+            var levelNo = $(".selection").length,
+            rand = Math.ceil(Math.random() * levelNo),
+            selectedLevel = "#selection" + rand,
+            levWidth = $(selectedLevel).width(),
+            canvasWidth = $("#game").width(),
+            $selectedLevel = $(selectedLevel)
+
+            $selectedLevel.appendTo("#game")
+            $selectedLevel.css({
+
                 "left": canvasWidth
             })
-            $(selLev).animate({
-                left: -(levWidth - canvasWidth + 50)
-                }, 3000, "linear")
+            $selectedLevel.animate({
+                left: -levWidth 
+            },
+                5000,
+                "linear",
+                function() {
+                    $selectedLevel.appendTo("#levelContainer")
+                    requestAnimationFrame(gameStart)
+                }
+            )
+    }
+
+    $(document).keydown(function(e) {
+
+        if (e.keyCode == 32) {
+           gameStart()
         }
     })
-
 
 })
