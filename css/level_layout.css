@@ -32,3 +32,10 @@
     height: 300px;
     top: 60px;
 }
+
+#img6 {
+    height: 185px;
+    left: 250px;
+    top: 0;
+    transform: rotate(180deg);
+}
