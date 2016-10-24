@@ -4,42 +4,42 @@
     height: 100%;
 }
 
-#img1 {
+#selection1 .img1 {
     height: 250px;
     position: absolute;
     bottom: 0;
     left: 20px;
 }
 
-#img2 {
+#selection1 .img2 {
     height: 100px;
     position: absolute;
     bottom: 250px;
     left: 70px;
 }
 
-#img3 {
+#selection1 .img3 {
     position: absolute;
     bottom: 0;
     left: 500px;
     height: 370px;
 }
 
-#img4 {
+#selection1 .img4 {
     position: absolute;
     bottom: 0;
     left: 250px;
     height: 185px;
 }
 
-#img5 {
+#selection1 .img5 {
     position: absolute;
     left: 950px;
     height: 300px;
     top: 60px;
 }
 
-#img6 {
+#selection1 .img6 {
     height: 185px;
     left: 250px;
     top: 0;
