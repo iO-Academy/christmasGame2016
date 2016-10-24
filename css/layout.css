@@ -9,11 +9,11 @@
     width: 900px;
     height: 600px;
     margin: auto;
+    overflow: hidden;
 }
 
 #canvas.game {
     padding: 15px;
-    overflow: hidden;
 }
 
 form {
@@ -49,6 +49,7 @@ form input {
 #game {
     border: 5px solid #ffffff;
     height: 485px;
+    overflow: hidden;
 }
 
 footer {
