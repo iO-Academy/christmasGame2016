@@ -30,10 +30,11 @@ form input {
     right: 120px;
 }
 
-#intro_text {
+#intro p {
     position: absolute;
-    width: 250px;
-    top: 165px;
+    width: 200px;
+    top: 140px;
+    right: 25px;
 }
 
 #error {
