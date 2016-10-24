@@ -27,7 +27,7 @@ form input {
     width: 250px;
     height: 382px;
     top: 109px;
-    right: 120px;
+    right: 85px;
 }
 
 #intro p {
@@ -39,4 +39,5 @@ form input {
 
 #error {
     height: 30px;
+    color: #ec8024;
 }
