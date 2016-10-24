@@ -40,8 +40,9 @@ form input {
 
 #intro p {
     position: absolute;
-    width: 250px;
-    top: 165px;
+    width: 200px;
+    top: 140px;
+    right: 25px;
 }
 
 #game {
