@@ -13,6 +13,7 @@
 
 #canvas.game {
     padding: 15px;
+    overflow: hidden;
 }
 
 form {
