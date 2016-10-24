@@ -18,10 +18,12 @@
     left: 500px;
     height: 370px;
 }
-}
 
 #img4 {
-
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    height: 185px;
 }
 
 #img5 {
