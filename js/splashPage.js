@@ -1,27 +1,23 @@
 $(function() {
-    $('form').submit(function() {
+
+    $("form").submit(function() {
         var obj = {}
-        obj.name = $('#username').val()
-        obj.email = $('#email').val()
-        $.ajax({
-            method: "POST",
-            url: "POST.php",
-            data: obj
-        })
-            .done(
-                function(a) {
-                    console.log(a)
+        obj.userName = $("#username").val()
+        obj.userEmail = $("#email").val()
+        obj.action = "createUser"
 
-                })
-        return false;
+        if (validateForm(obj.userName, obj.userEmail)) {
+            $.ajax({
+                method: "POST",
+                url: "api/",
+                data: obj
+            })
+            $("#error").text("")
+        } else {
+            $("#error").text("Invalid username or email. Please try again.")
+        }
+        return false
     })
-
-
-
-
-
-
-
 
 
 
