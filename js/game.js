@@ -3,7 +3,8 @@ $(function() {
         var levelNo = $(".selection").length
         var rand = Math.ceil(Math.random() * levelNo)
         if (e.keyCode == 32) {
-            // $("#selection" + )
+            var selLev = "#selection" + rand
+            var levWidth = $(selLev).width()
         }
     })
 
