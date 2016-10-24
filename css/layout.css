@@ -48,6 +48,7 @@ form input {
 #game {
     border: 5px solid #ffffff;
     height: 485px;
+    position: relative;
 }
 
 footer {
