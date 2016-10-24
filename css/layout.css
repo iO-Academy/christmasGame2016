@@ -43,11 +43,9 @@ form .button {
     top: 165px;
 }
 
-
-
 #game {
     border: 5px solid #ffffff;
-    height: 505px;
+    height: 485px;
 }
 
 footer {
@@ -56,5 +54,9 @@ footer {
     left: 0;
     right: 0;
     border-top: 1px solid #ffffff;
-    padding: 15px;
+    padding: 20px;
+}
+
+footer .button {
+    padding: 10px 40px;
 }
