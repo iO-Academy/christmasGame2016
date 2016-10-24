@@ -50,6 +50,7 @@ form input {
     border: 5px solid #ffffff;
     height: 485px;
     overflow: hidden;
+    position: relative;
 }
 
 footer {
