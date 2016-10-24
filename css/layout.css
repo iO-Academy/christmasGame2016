@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+#canvas {
+    background-color: #3a5b8c;
+    padding: 40px;
+    position: relative;
+    width: 900px;
+    height: 600px;
+    margin: auto;
+}
+
+form {
+    margin-top: 70px;
+}
+
+form input {
+    border: 2px solid #808080;
+    margin-bottom: 15px;
+    width: 360px;
+    display: block;
+}
+
+#intro {
+    position: absolute;
+    width: 250px;
+    height: 382px;
+    top: 109px;
+    right: 85px;
+}
+
+#intro p {
+    position: absolute;
+    width: 200px;
+    top: 140px;
+    right: 25px;
+}
+
+#error {
+    height: 30px;
+    color: #ec8024;
+}
