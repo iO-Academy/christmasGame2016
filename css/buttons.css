@@ -4,7 +4,10 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     padding: 5px 40px 5px 40px;
-    margin-top: 15px;
     border: none;
+    font-size: 16px;
+}
+
+.button.large {
     font-size: 35px;
 }
