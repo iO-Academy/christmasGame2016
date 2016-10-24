@@ -25,9 +25,8 @@ form {
     position: absolute;
     width: 250px;
     height: 382px;
-    top: 50%;
+    top: 109px;
     right: 120px;
-    transform: translateY(-50%);
 }
 
 #intro_text {
