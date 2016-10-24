@@ -1,9 +1,9 @@
 $(function() {
 
-    $('form').submit(function() {
+    $("form").submit(function() {
         var obj = {}
-        obj.userName = $('#username').val()
-        obj.userEmail = $('#email').val()
+        obj.userName = $("#username").val()
+        obj.userEmail = $("#email").val()
         obj.action = "createUser"
 
         if (validateForm(obj.userName, obj.userEmail)) {
@@ -12,9 +12,9 @@ $(function() {
                 url: "api/",
                 data: obj
             })
-            $('#error').text("")
+            $("#error").text("")
         } else {
-            $('#error').text("Invalid username or email. Please try again.")
+            $("#error").text("Invalid username or email. Please try again.")
         }
         return false
     })
