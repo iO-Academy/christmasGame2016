@@ -10,6 +10,6 @@ button {
     cursor: pointer;
 }
 
-.button.large {
+button.large {
     font-size: 35px;
 }
