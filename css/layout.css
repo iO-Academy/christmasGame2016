@@ -34,3 +34,7 @@ form {
     width: 250px;
     top: 165px;
 }
+
+#error {
+    height: 30px;
+}
