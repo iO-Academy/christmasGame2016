@@ -6,7 +6,10 @@
 }
 
 #img2 {
-
+    height: 100px;
+    position: absolute;
+    bottom: 250px;
+    left: 70px;
 }
 
 #img3 {
