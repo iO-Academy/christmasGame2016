@@ -48,7 +48,6 @@
 .level1 .img1 {
     height: 250px;
     position: absolute;
-    bottom: 0;
     left: 20px;
 }
 
@@ -61,14 +60,12 @@
 
 .level1 .img3 {
     position: absolute;
-    bottom: 0;
     left: 500px;
     height: 370px;
 }
 
 .level1 .img4 {
     position: absolute;
-    bottom: 0;
     left: 250px;
     height: 185px;
 }
@@ -83,7 +80,6 @@
 .level1 .img6 {
     height: 185px;
     left: 250px;
-    top: 0;
     transform: rotate(180deg);
 }
 
