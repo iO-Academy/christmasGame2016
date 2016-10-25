@@ -1,12 +1,11 @@
 $(function() {
-    function gameStart() {
-            var levelNo = $(".selection").length,
-            rand = Math.ceil(Math.random() * levelNo),
+    function gameLoop(counter, levelNo, canvasWidth) {
+            var rand = Math.ceil(Math.random() * levelNo),
             selectedLevel = "#selection" + rand,
             levWidth = $(selectedLevel).width(),
-            canvasWidth = $("#game").width(),
             $selectedLevel = $(selectedLevel),
-            dur = levWidth / 0.07466
+            dur = levWidth/(0.07466*Math.pow(1.2, (Math.floor(counter/levelNo))))
+            counter++
 
             $selectedLevel.appendTo("#game")
             $selectedLevel.css({
@@ -19,15 +18,21 @@ $(function() {
                 "linear",
                 function() {
                     $selectedLevel.appendTo("#levelContainer")
-                    requestAnimationFrame(gameStart)
+                    requestAnimationFrame(function() {
+                        gameLoop(counter, levelNo, canvasWidth)
+                    })
                 }
             )
+
     }
 
     $(document).keydown(function(e) {
 
         if (e.keyCode == 32) {
-           gameStart()
+            var counter = 0,
+            levelNo = $(".selection").length,
+            canvasWidth = $("#game").width()
+            gameLoop(counter, levelNo, canvasWidth)
         }
     })
 
