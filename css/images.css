@@ -1,0 +1,60 @@
+.snowman {
+    width: 250px;
+    height: 360px;
+    position: relative;
+}
+
+.snowman .head {
+    width: 155px;
+    height: 155px;
+    background-color: #ffffff ;
+    border-radius: 50%;
+    left: 47px;
+    position: absolute;
+    top: 0;
+}
+
+.snowman .body {
+    width: 250px;
+    height: 250px;
+    background-color: #ffffff ;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+}
+
+.snowman .head::before,
+.snowman .head::after
+{
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.76);
+    position: absolute;
+}
+
+.snowman .head::before {
+    left: 45px;
+    top: 50px;
+}
+
+.snowman .head::after {
+    left: 96px;
+    top: 50px;
+}
+
+.snowman .body::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -20px;
+    left: 105px;
+    border: 35px solid #ff7417 ;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-radius: 50%;
+
+}
