@@ -4,32 +4,32 @@ var timer
 /**
  * Calculates the number of minutes the counter has been running for.
  *
- * @param i pass in an int of the total number of seconds passed (1s interval i++)
- * @return int
+ * @param i pass in a number equalling the total number of seconds passed (1s interval i++)
+ * @return number
  */
 function getGameMinutes(i) {
     return Math.floor(i / 60)
 }
 
 /**
- * Calculates the number of remaining number of seconds from the total time passed in.
+ * Calculates the seconds value from the total time passed in.
  *
- * @param i pass in an int of the total number of seconds passed (1s interval i++)
- * @return int
+ * @param i pass in a number equalling the total number of seconds passed (1s interval i++)
+ * @return number
  */
 function getGameSeconds(i) {
     return i % 60;
 }
 
 /**
- * Stops the timer - call on collision etc.
+ * Stops the timer
  */
 function stopTimer() {
     clearInterval(timer)
 }
 
 /**
- * Starts the timer - call on start of game
+ * Starts the timer
  */
 function startTimer() {
     var i = 0
