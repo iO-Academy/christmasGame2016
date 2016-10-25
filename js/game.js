@@ -35,8 +35,8 @@ $(function() {
                 }
             )
     }
-var inPlay = false
-    $(document).keydown(function(e) {
+
+    function gameStart(e) {
         var counter = 0,
             totalLevels = $("#levelContainer .level").length,
             canvasWidth = $("#game").width(),
@@ -49,6 +49,11 @@ var inPlay = false
             moveSnowman()
             gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
         }
+    }
+
+    var inPlay = false
+    $(document).keydown(function(e) {
+        gameStart(e)
     })
 })
 
