@@ -2,7 +2,7 @@ $(function() {
 
     function gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed) {
             var rand = Math.ceil(Math.random() * totalLevels),
-            selectedLevel = "#selection" + rand,
+            selectedLevel = ".selection" + rand,
             levWidth = $(selectedLevel).width(),
             $selectedLevel = $(selectedLevel),
             speedIncrementer = Math.floor(counter/totalLevels),
