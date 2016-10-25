@@ -1,5 +1,5 @@
 * {
-    color: #ffffff;
+    color: #3A5B8C;
     font-family: Arial;
 }
 
@@ -12,12 +12,14 @@ h1 {
 form,
 form input {
     font-size: 25px;
-    color: #3a5b8c;
 }
 
 #intro p {
-    color: #3a5b8c;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+}
+
+button {
+    color: #FFFFFF;
 }
