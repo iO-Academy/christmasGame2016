@@ -1,10 +1,9 @@
 // handler to enable the stop function to work without affecting other keypresses and functions
 function snowmanHandler(e) {
-    // change to increase/decrease snowman movement spee.d Higher value will move faster, lower value slower
+    // change to increase/decrease snowman movement speed.
     var movementIncrement = 10
 
-    // limits the snowman's movement to within the game border. subtract 10 as default. 0 will be to edge of #game.
-    // Higher value will limit further into the #game div
+    // Minimum y value
     var gameHeight = $("#game").height() - 10
 
     // gets the height of the snowman img for movement limiting calculations
@@ -13,7 +12,7 @@ function snowmanHandler(e) {
     // the original position of the snowman
     var startingPositionY = $("#snowman").css("top")
 
-    // remove "px" from the top position to enable comparison to the snowman's current position
+    // get int from top value
     var positionNumber = startingPositionY.substring(0, (startingPositionY.length - 2))
 
     // down movement on DOWN ARROW press
@@ -35,7 +34,7 @@ function moveSnowman() {
     $("#runningMan").attr("src", "assets/runningsnowman.gif")
 }
 
-// switches off the movement listener so the snowman won't move when the game ends
+// switches off the movement listener
 // change the image to a static snowman
 function stopSnowman() {
     $(document).off("keydown", snowmanHandler)
