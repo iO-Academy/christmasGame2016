@@ -45,6 +45,8 @@ $(function() {
             speed = initialSpeed,
             increaseFactor = 1.2,
             maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //0.2675202785
+
+            moveSnowman()
             gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
         }
     })
