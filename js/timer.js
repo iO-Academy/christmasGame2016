@@ -1,6 +1,4 @@
-$(function() {
-
-    // set global variables or use in functions
+ // set global variables or use in functions
     var i = 0
     var timer
 
@@ -40,7 +38,11 @@ $(function() {
             var paddedSeconds = pad.substring(0, pad.length - gameSeconds.length) + gameSeconds
 
             // send times with leading zeroes out to the game screen every sewcond
-            $("#timer").html(paddedMinutes + ":" + paddedSeconds)
+            $("#timer").text(paddedMinutes + ":" + paddedSeconds)
         }, 1000)
+
     }
-})
+
+
+    // THIS IS THE CODE TO SHOW THE FINISH TIME ON THE DIE SCREEN.
+ // $("#insertTime").text($("#timer").text())
