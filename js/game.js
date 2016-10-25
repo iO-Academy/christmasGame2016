@@ -5,9 +5,10 @@ $(function() {
             selectedLevel = ".level" + rand,
             levWidth = $(selectedLevel).width(),
             $selectedLevel = $(selectedLevel),
+            loadedLevel = "#game " + selectedLevel,
             speedIncrementer = Math.floor(counter/totalLevels),
             dur
-        
+
             if (speed >= maxSpeed) {
                 speed = maxSpeed
             } else {
@@ -16,38 +17,46 @@ $(function() {
             dur = levWidth/speed
             counter++
 
-            $selectedLevel.appendTo("#game")
-            $selectedLevel.css({
-
+            $selectedLevel.clone().appendTo("#game")
+            var $loadedLevel = $(loadedLevel)
+            $loadedLevel.css({
                 "left": canvasWidth
             })
-            $selectedLevel.animate({
+            $loadedLevel.animate({
                 left: -levWidth 
             },
                 dur,
                 "linear",
                 function() {
-                    $selectedLevel.appendTo("#levelContainer")
+                    $loadedLevel.remove()
                     requestAnimationFrame(function() {
                         gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
                     })
                 }
             )
     }
-
+var inPlay = false
     $(document).keydown(function(e) {
-
-        if (e.keyCode == 32) {
-            var counter = 0,
-            totalLevels = $(".level").length,
+        var counter = 0,
+            totalLevels = $("#levelContainer .level").length,
             canvasWidth = $("#game").width(),
             initialSpeed = 0.07466,
             speed = initialSpeed,
             increaseFactor = 1.2,
             maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //0.2675202785
-
+        if (e.keyCode == 32 && inPlay == false) {
+            inPlay = true
             moveSnowman()
             gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
         }
     })
 })
+
+
+// console.log("rand: " + rand + "||",
+//     "selectedLevel: " + selectedLevel + "||",
+//     "$selectedLevel: " + $selectedLevel + "||",
+//     "loadedLevel: " + loadedLevel + "||",
+//     "$loadedLevel: " + $loadedLevel + "||"
+// )
+// console.log($selectedLevel)
