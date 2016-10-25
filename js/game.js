@@ -5,7 +5,8 @@ $(function() {
             selectedLevel = "#selection" + rand,
             levWidth = $(selectedLevel).width(),
             canvasWidth = $("#game").width(),
-            $selectedLevel = $(selectedLevel)
+            $selectedLevel = $(selectedLevel),
+            dur = levWidth / 0.07466
 
             $selectedLevel.appendTo("#game")
             $selectedLevel.css({
@@ -14,7 +15,7 @@ $(function() {
             $selectedLevel.animate({
                 left: -levWidth 
             },
-                5000,
+                dur,
                 "linear",
                 function() {
                     $selectedLevel.appendTo("#levelContainer")
