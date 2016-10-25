@@ -1,4 +1,8 @@
-// handler to enable the stop function to work without affecting other keypresses and functions
+/**
+ * handler to enable the stop function to work without affecting other keypresses and functions
+ *
+ * param e is the keycode
+ */
 function snowmanHandler(e) {
     // change to increase/decrease snowman movement speed.
     var movementIncrement = 10
@@ -28,25 +32,28 @@ function snowmanHandler(e) {
     }
 }
 
-// calls the snowman movement handler and changes the image to a moving gif
+/**
+ * Calls the snowman movement handler and changes the image to a moving gif.
+ */
 function moveSnowman() {
     $(document).keydown(snowmanHandler)
     $("#runningMan").attr("src", "assets/runningsnowman.gif")
 }
 
-// switches off the movement listener
-// change the image to a static snowman
+/**
+ * Switches off the movement listener. Change the image to a static snowman
+ */
 function stopSnowman() {
     $(document).off("keydown", snowmanHandler)
     $("#runningMan").attr("src", "assets/standingsnowman.jpg")
 }
 
 
-// // this whole section is here for testing
-// // Z key will stop the snowman from moving
-// // X key will start the snowman moving
-// // NONE OF THE PREVIOUS CODE NEEDS TO BE IN THE DOCUMENT READY FUNCTION
-//
+// this whole section is here for testing
+// Z key will stop the snowman from moving
+// X key will start the snowman moving
+// NONE OF THE PREVIOUS CODE NEEDS TO BE IN THE DOCUMENT READY FUNCTION
+
 // $(function() {
 //
 //     function testPicture() {
@@ -54,10 +61,12 @@ function stopSnowman() {
 //         if (e.keyCode == 90) {
 //              stopSnowman()
 //         }
-//             if (e.keyCode == 88) {
-//                 moveSnowman()
-//             }
+//         if (e.keyCode == 88) {
+//             moveSnowman()
+//         }
 //     })
 //     }
+//
+//     testPicture()
 // })
 
