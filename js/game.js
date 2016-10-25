@@ -1,12 +1,20 @@
 $(function() {
 
-    function gameStart() {
-            var levelNo = $(".selection").length,
-            rand = Math.ceil(Math.random() * levelNo),
-            selectedLevel = "#selection" + rand,
+    function gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed) {
+            var rand = Math.ceil(Math.random() * totalLevels),
+            selectedLevel = ".level" + rand,
             levWidth = $(selectedLevel).width(),
-            canvasWidth = $("#game").width(),
-            $selectedLevel = $(selectedLevel)
+            $selectedLevel = $(selectedLevel),
+            speedIncrementer = Math.floor(counter/totalLevels),
+            dur
+        
+            if (speed >= maxSpeed) {
+                speed = maxSpeed
+            } else {
+                speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
+            }
+            dur = levWidth/speed
+            counter++
 
             $selectedLevel.appendTo("#game")
             $selectedLevel.css({
@@ -16,11 +24,13 @@ $(function() {
             $selectedLevel.animate({
                 left: -levWidth 
             },
-                5000,
+                dur,
                 "linear",
                 function() {
                     $selectedLevel.appendTo("#levelContainer")
-                    requestAnimationFrame(gameStart)
+                    requestAnimationFrame(function() {
+                        gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
+                    })
                 }
             )
     }
@@ -28,8 +38,16 @@ $(function() {
     $(document).keydown(function(e) {
 
         if (e.keyCode == 32) {
-           gameStart()
+            var counter = 0,
+            totalLevels = $(".level").length,
+            canvasWidth = $("#game").width(),
+            initialSpeed = 0.07466,
+            speed = initialSpeed,
+            increaseFactor = 1.2,
+            maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //0.2675202785
+
+            moveSnowman()
+            gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
         }
     })
-
 })
