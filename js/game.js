@@ -1,14 +1,17 @@
 $(function() {
-    function gameLoop(counter, totalLevels, canvasWidth, speed) {
+    function gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed) {
             var rand = Math.ceil(Math.random() * totalLevels),
             selectedLevel = "#selection" + rand,
             levWidth = $(selectedLevel).width(),
             $selectedLevel = $(selectedLevel),
             speedIncrementer = Math.floor(counter/totalLevels),
-            increaseFactor = 1.2,
             dur
-
-            speed *= Math.pow(increaseFactor, speedIncrementer)
+        
+            if (speed >= maxSpeed) {
+                speed = maxSpeed
+            } else {
+                speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
+            }
             dur = levWidth/speed
             counter++
 
@@ -24,11 +27,10 @@ $(function() {
                 function() {
                     $selectedLevel.appendTo("#levelContainer")
                     requestAnimationFrame(function() {
-                        gameLoop(counter, totalLevels, canvasWidth, speed)
+                        gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
                     })
                 }
             )
-
     }
 
     $(document).keydown(function(e) {
@@ -37,9 +39,11 @@ $(function() {
             var counter = 0,
             totalLevels = $(".selection").length,
             canvasWidth = $("#game").width(),
-            speed = 0.07466
-            gameLoop(counter, totalLevels, canvasWidth, speed)
+            initialSpeed = 0.07466,
+            speed = initialSpeed,
+            increaseFactor = 1.2,
+            maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //0.2675202785
+            gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed)
         }
     })
-
 })
