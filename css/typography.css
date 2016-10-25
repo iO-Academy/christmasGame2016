@@ -20,6 +20,14 @@ form input {
     text-align: center;
 }
 
+label {
+    color: #FFFFFF;
+}
+
 button {
+    color: #FFFFFF;
+}
+
+#error {
     color: #FFFFFF;
 }
