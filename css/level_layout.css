@@ -1,0 +1,155 @@
+#levelContainer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+#selection1 {
+    width: 1120px;
+}
+
+#selection2 {
+    width: 1020px;
+}
+
+#selection3 {
+    width: 1080px;
+}
+
+.selection {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+}
+
+.selection img {
+    position: absolute;
+}
+
+.selection .top {
+    top: 0;
+}
+
+.selection .bottom {
+    bottom: 0;
+}
+
+.selection .rotate {
+    -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
+    -moz-transform: rotate(180deg);        /* FF */
+    -o-transform: rotate(180deg);          /* Opera */
+    -ms-transform: rotate(180deg);         /* IE9 */
+    transform: rotate(180deg);
+    /* IE8 and below */
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1, M12=0, M21=0, M22=-1, DX=0, DY=0, SizingMethod='auto expand');
+}
+
+#selection1 .img1 {
+    height: 250px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+#selection1 .img2 {
+    height: 100px;
+    position: absolute;
+    bottom: 250px;
+    left: 70px;
+}
+
+#selection1 .img3 {
+    position: absolute;
+    bottom: 0;
+    left: 500px;
+    height: 370px;
+}
+
+#selection1 .img4 {
+    position: absolute;
+    bottom: 0;
+    left: 250px;
+    height: 185px;
+}
+
+#selection1 .img5 {
+    position: absolute;
+    left: 950px;
+    height: 300px;
+    top: 60px;
+}
+
+#selection1 .img6 {
+    height: 185px;
+    left: 250px;
+    top: 0;
+    transform: rotate(180deg);
+}
+
+#selection2 .img1 {
+    width: 150px;
+    left: 10px;
+}
+
+#selection2 .img2 {
+    width: 200px;
+    left: 150px;
+}
+
+#selection2 .img3 {
+    width: 50px;
+    bottom: 100px;
+    left: 200px;
+}
+
+#selection2 .img4 {
+    width: 200px;
+    left: 350px;
+}
+
+#selection2 .img5 {
+    width: 200px;
+    left: 650px;
+}
+
+#selection2 .img6 {
+    width: 120px;
+    left: 900px;
+}
+
+#selection3 .img1,
+#selection3 .img2 {
+    left: 20px;
+    height: 185px;
+}
+
+#selection3 .img3 {
+    left: 450px;
+    height: 105px;
+}
+
+#selection3 .img4 {
+    left: 450px;
+    height: 265px;
+}
+
+#selection3 .img5 {
+    left: 900px;
+    height: 265px;
+}
+
+#selection3 .img6 {
+    left: 900px;
+    height: 105px;
+}
+
+#selection3 .img7,
+#selection3 .img8 {
+    left: 1350px;
+    height: 185px;
+}
+
+
+
+
