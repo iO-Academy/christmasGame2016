@@ -1,46 +1,56 @@
-$(function() {
+// set global variable for use in functions
+var timer
 
-    // set global variables or use in functions
+/**
+ * Calculates the number of minutes the counter has been running for.
+ *
+ * @param i pass in an int of the total number of seconds passed (1s interval i++)
+ * @return int
+ */
+function getGameMinutes(i) {
+    return Math.floor(i / 60)
+}
+
+/**
+ * Calculates the number of remaining number of seconds from the total time passed in.
+ *
+ * @param i pass in an int of the total number of seconds passed (1s interval i++)
+ * @return int
+ */
+function getGameSeconds(i) {
+    return i % 60;
+}
+
+/**
+ * Stops the timer - call on collision etc.
+ */
+function stopTimer() {
+    clearInterval(timer)
+}
+
+/**
+ * Starts the timer - call on start of game
+ */
+function startTimer() {
     var i = 0
-    var timer
+    var padLength = "00"
 
-    // calculates the number of minutes the counter has been running for
-    function getGameMinutes(i) {
-        return Math.floor(i / 60)
-    }
+    timer = setInterval(function() {
 
-    // calculates the number of seconds the counter has been running for
-    function getGameSeconds(i) {
-        return i % 60;
-    }
+        // increase the counter by one on each 1000ms interval
+        i++
 
-    // stops the timer - call on collision etc
-    function stopTimer() {
-        clearInterval(timer)
-    }
+        // turn game minutes to a string for correct display
+        var gameMinutes = getGameMinutes(i) + ''
 
-    // start times on space to start
-    function startTimer() {
-        timer = setInterval(function() {
+        // turn game seconds to a string for correct display
+        var gameSeconds = getGameSeconds(i) + ''
 
-            // increase the counter by one on each 1000ms interval
-            i += 1
+        // add padding to minutes and seconds to return two digits for each
+        var paddedMinutes = leftPad(gameMinutes, padLength)
+        var paddedSeconds = leftPad(gameSeconds, padLength)
 
-            // turn game minutes to a string for correct display
-            var gameMinutes = getGameMinutes(i) + ''
-
-            // turn game seconds to a string for correct display
-            var gameSeconds = getGameSeconds(i) + ''
-
-            // padding char to expand minutes and seconds
-            var pad = "00"
-
-            // pads minutes and seconds - adds leading zero to display two digits for m & s at all times
-            var paddedMinutes = pad.substring(0, pad.length - gameMinutes.length) + gameMinutes
-            var paddedSeconds = pad.substring(0, pad.length - gameSeconds.length) + gameSeconds
-
-            // send times with leading zeroes out to the game screen every sewcond
-            $("#timer").html(paddedMinutes + ":" + paddedSeconds)
-        }, 1000)
-    }
-})
+        // send times with leading zeroes out to the game screen every second
+        $("#timer").html(paddedMinutes + ":" + paddedSeconds)
+    }, 1000)
+}
