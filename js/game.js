@@ -1,4 +1,5 @@
 $(function() {
+
     function gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed) {
             var rand = Math.ceil(Math.random() * totalLevels),
             selectedLevel = "#selection" + rand,
@@ -17,6 +18,7 @@ $(function() {
 
             $selectedLevel.appendTo("#game")
             $selectedLevel.css({
+
                 "left": canvasWidth
             })
             $selectedLevel.animate({
