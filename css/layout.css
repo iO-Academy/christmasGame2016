@@ -9,6 +9,7 @@
     width: 900px;
     height: 600px;
     margin: auto;
+    overflow: hidden;
 }
 
 #canvas.game {
@@ -19,14 +20,15 @@ form {
     margin-top: 70px;
 }
 
-form .button {
-    margin-top: 15px;
+form button {
+    margin-top: 40px;
 }
 
-.input {
+form input {
     border: 2px solid #808080;
     margin-bottom: 15px;
     width: 360px;
+    display: block;
 }
 
 #intro {
@@ -34,18 +36,21 @@ form .button {
     width: 250px;
     height: 382px;
     top: 109px;
-    right: 120px;
+    right: 85px;
 }
 
-#intro_text {
+#intro p {
     position: absolute;
-    width: 250px;
-    top: 165px;
+    width: 200px;
+    top: 140px;
+    right: 25px;
 }
 
 #game {
     border: 5px solid #ffffff;
     height: 485px;
+    overflow: hidden;
+    position: relative;
 }
 
 footer {
@@ -59,4 +64,12 @@ footer {
 
 footer .button {
     padding: 10px 40px;
+    width: 200px;
+    top: 140px;
+    right: 25px;
+}
+
+#error {
+    height: 30px;
+    color: #ec8024;
 }

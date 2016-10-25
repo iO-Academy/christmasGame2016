@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/layout.css">
     <link rel="stylesheet" type="text/css" href="css/typography.css">
     <link rel="stylesheet" type="text/css" href="css/buttons.css">
+    <script src="js/jquery.js"></script>
     <script src="js/splashPage.js"></script>
 </head>
 <body>
@@ -12,20 +13,15 @@
         <h1>Welcome</h1>
         <form>
             <label>Name *</label>
-            <br>
-            <input class="input" name="username" id="username">
-            <br>
+            <input name="username" id="username">
             <label>Email *</label>
-            <br>
-            <input class="input" name="email" id="email">
-            <br>
-            <input class="button large" type="button" value="PLAY">
+            <input name="email" id="email">
+            <p id="error"></p>
+            <button class="large" type="submit">PLAY</button>
         </form>
         <div id="intro">
             <img src="assets/snowman.png">
-            <div id="intro_text">
-                Mayden<br>Academy<br>Christmas<br>Game<br>2016
-            </div>
+            <p>Mayden Academy Christmas Game<br>2016</p>
         </div>
     </div>
 </body>
