@@ -23,7 +23,8 @@
     height: 100%;
 }
 
-.level img {
+.level img,
+.level .snowman{
     position: absolute;
 }
 
@@ -47,31 +48,28 @@
 
 .level1 .img1 {
     height: 250px;
-    position: absolute;
+    width: 174px;
     left: 20px;
 }
 
 .level1 .img2 {
     height: 100px;
-    position: absolute;
+    width: 69.5px;
     bottom: 250px;
     left: 70px;
 }
 
 .level1 .img3 {
-    position: absolute;
     left: 500px;
     height: 370px;
 }
 
 .level1 .img4 {
-    position: absolute;
     left: 250px;
     height: 185px;
 }
 
 .level1 .img5 {
-    position: absolute;
     left: 950px;
     height: 300px;
     top: 60px;
@@ -94,6 +92,7 @@
 }
 
 .level2 .img3 {
+    height: 72px;
     width: 50px;
     bottom: 100px;
     left: 200px;
@@ -106,6 +105,7 @@
 
 .level2 .img5 {
     width: 200px;
+    height: 288px;
     left: 650px;
 }
 
