@@ -66,6 +66,16 @@ footer button {
     right: 25px;
 }
 
+#timer {
+    background-color: #FFFFFF;
+    width: 150px;
+    height: 50px;
+    padding-top: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
 #error {
     height: 30px;
     color: #ec8024;
