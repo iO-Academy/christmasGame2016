@@ -1,10 +1,15 @@
 $(function() {
-    function gameLoop(counter, levelNo, canvasWidth) {
-            var rand = Math.ceil(Math.random() * levelNo),
+    function gameLoop(counter, totalLevels, canvasWidth, speed) {
+            var rand = Math.ceil(Math.random() * totalLevels),
             selectedLevel = "#selection" + rand,
             levWidth = $(selectedLevel).width(),
             $selectedLevel = $(selectedLevel),
-            dur = levWidth/(0.07466*Math.pow(1.2, (Math.floor(counter/levelNo))))
+            speedIncrementer = Math.floor(counter/totalLevels),
+            increaseFactor = 1.2,
+            dur
+
+            speed *= Math.pow(increaseFactor, speedIncrementer)
+            dur = levWidth/speed
             counter++
 
             $selectedLevel.appendTo("#game")
@@ -19,7 +24,7 @@ $(function() {
                 function() {
                     $selectedLevel.appendTo("#levelContainer")
                     requestAnimationFrame(function() {
-                        gameLoop(counter, levelNo, canvasWidth)
+                        gameLoop(counter, totalLevels, canvasWidth, speed)
                     })
                 }
             )
@@ -30,9 +35,10 @@ $(function() {
 
         if (e.keyCode == 32) {
             var counter = 0,
-            levelNo = $(".selection").length,
-            canvasWidth = $("#game").width()
-            gameLoop(counter, levelNo, canvasWidth)
+            totalLevels = $(".selection").length,
+            canvasWidth = $("#game").width(),
+            speed = 0.07466
+            gameLoop(counter, totalLevels, canvasWidth, speed)
         }
     })
 
