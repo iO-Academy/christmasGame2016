@@ -1,12 +1,32 @@
-function popupNotification($element) {
-    var elementHtml = $element.clone().wrap("<div/>").parent().html()
-    $("#game").html('<div class="notificationPopUp"></div>')
+/*
+* Generate popup div
+* Clone in content from passed in element
+* Display popup
+*
+* param $element pass in jQuery element name
+*
+*/
+function openPopup($element) {
+    var elementHtml = $element.clone(true, true).wrap("<div/>").parent().html()
+    $("#game").prepend('<div class="notificationPopUp"></div>')
     $(".notificationPopUp").html(elementHtml)
-    $(".notificationPopUp").show()
+    $(".notificationPopUp").fadeIn(350)
 }
 
+/*
+ * Clear cloned content
+ * Hide popup
+ */
 function closePopup() {
-    $("#game").html("")
-    $(".notificationPopUp").hide()
+    $("#game .notificationPopup").remove()
+    $(".notificationPopUp").fadeOut()
 }
+
+$(function() {
+    // die screen retry button event handler
+    $("#canvas").on("click", '.retry', function () {
+        closePopup()
+        // TODO start game
+    })
+})
 
