@@ -14,6 +14,8 @@
 
     // stops the timer - call on collision etc
     function stopTimer() {
+        // Display finish time on the die screen
+        $(".insertTime").text($("#timer").text())
         clearInterval(timer)
     }
 
@@ -40,9 +42,4 @@
             // send times with leading zeroes out to the game screen every sewcond
             $("#timer").text(paddedMinutes + ":" + paddedSeconds)
         }, 1000)
-
     }
-
-
-    // THIS IS THE CODE TO SHOW THE FINISH TIME ON THE DIE SCREEN.
- // $("#insertTime").text($("#timer").text())

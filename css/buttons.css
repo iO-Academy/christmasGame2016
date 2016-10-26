@@ -14,3 +14,8 @@ button.large {
     font-size: 35px;
     margin-top: 20px;
 }
+
+button
+span {
+    color: #FFFFFF;
+}
