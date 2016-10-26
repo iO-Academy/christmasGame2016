@@ -15,7 +15,21 @@ button.large {
     margin-top: 20px;
 }
 
-button
-span {
+button span {
     color: #FFFFFF;
 }
+
+#close {
+    position: absolute;
+    top: 450px;
+    left: 20px;
+}
+
+#game #leaderboard {
+    width: 198px;
+}
+
+#leaderboard {
+    width: 167px;
+}
+
