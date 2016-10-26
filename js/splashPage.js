@@ -13,13 +13,13 @@ $(function() {
                 url: "api/",
                 data: obj,
                 success: function(data) {
-                    console.log(data)
                     if (!data.success) {
                         $("#error").text(ajaxErrorMessage)
+                    } else {
+                        $('#canvas').load("game.html").addClass("game")
                     }
                 },
-                error: function(data) {
-                    console.log(data)
+                error: function() {
                     $("#error").text(ajaxErrorMessage)
                 }
             })
