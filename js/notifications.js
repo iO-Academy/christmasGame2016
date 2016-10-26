@@ -10,7 +10,7 @@ function openPopup($element) {
     var elementHtml = $element.clone(true, true).wrap("<div/>").parent().html()
     $("#game").prepend('<div class="notificationPopUp"></div>')
     $(".notificationPopUp").html(elementHtml)
-    $(".notificationPopUp").show()
+    $(".notificationPopUp").fadeIn(350)
 }
 
 /*
@@ -19,7 +19,7 @@ function openPopup($element) {
  */
 function closePopup() {
     $("#game .notificationPopup").remove()
-    $(".notificationPopUp").hide()
+    $(".notificationPopUp").fadeOut()
 }
 
 $(function() {
