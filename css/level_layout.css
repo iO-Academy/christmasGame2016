@@ -6,21 +6,22 @@
 }
 
 .level1 {
-    width: 1120px;
+    width: 1300px;
 }
 
 .level2 {
-    width: 1020px;
+    width: 1200px;
 }
 
 .level3 {
-    width: 1550px;
+    width: 1650px;
 }
 
 .level {
-    position: relative;
+    position: absolute;
     min-width: 100%;
     height: 100%;
+    top: 0;
 }
 
 .level img {
