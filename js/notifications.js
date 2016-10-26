@@ -8,7 +8,11 @@
 */
 function openPopup($element) {
     var elementHtml = $element.clone(true, true).wrap("<div/>").parent().html()
-    $("#game").prepend('<div class="notificationPopUp"></div>')
+    if ($("#game").length > 0) {
+        $("#game").prepend('<div class="notificationPopUp"></div>')
+    } else {
+        $("#canvas").prepend('<div class="notificationPopUp"></div>')
+    }
     $(".notificationPopUp").html(elementHtml)
     $(".notificationPopUp").fadeIn(350)
 }
