@@ -1,13 +1,12 @@
 $(function() {
 
     function gameStart(e) {
-        var initialSpeed = 0.08,
+        var initialSpeed = 0.09,
             speed = initialSpeed,
             increaseFactor = 1.1,
             counter = 0,
             maxSpeed = initialSpeed * Math.pow(increaseFactor, 7)
-        if (e.keyCode == 32 && inPlay == false) {
-            inPlay = true
+        if (e.keyCode == 32) {
             moveSnowman()
             gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
         }
@@ -71,9 +70,19 @@ $(function() {
         })
     }
 
-    var inPlay = false
-    $(document).keydown(function(e) {
-        gameStart(e)
-    })
+    function stopPlay() {
+        $("#game .level").stop()
+        $("#game .level").remove()
+        stopSnowman()
+        gameStartHandler()
+    }
+
+
+    function gameStartHandler() {
+        $(document).one('keydown', function(e) {
+            gameStart(e)
+        })
+    }
+     gameStartHandler()
 
 })
