@@ -55,26 +55,27 @@ form input {
     height: 490px;
 }
 
-#diePopUp {
-    visibility: hidden;
-}
-
-#dieScreen {
+.notificationPopUp {
     width: 850px;
     height: 470px;
     position: relative;
     top: 5px;
     left: 5px;
     background-color: #FFFFFF;
+    display: none;
+}
+
+#hiddenPopups {
+    display: none;
+}
+
+#dieScreen {
     font-size: 170%;
     text-align: center;
     box-shadow: 0px 0px 20px -2px rgba(255,255,255,0.94);
-    visibility: hidden;
-}
-
-#dieText {
     padding-top: 60px;
 }
+
 
 footer {
     position: absolute;

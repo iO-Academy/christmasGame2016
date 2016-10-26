@@ -9,16 +9,19 @@
     <script src="js/jquery.js"></script>
     <script src="js/splashPage.js"></script>
     <script src="js/timer.js"></script>
+    <script src="js/notifications.js"></script>
 </head>
 <body>
 <div id="canvas" class="game">
     <div id="game">
     </div>
-    <div id="dieScreen">
-        <h2>Uh-oh, you ran into an obstacle!</h2>
-        <p>Your time was <span id="insertTime"></span></p>
-        <p>Your time has been recorded successfully<br>Click below to try again</p>
-        <button class="large" type="submit">PLAY</button>
+    <div id="hiddenPopups">
+        <div id="dieScreen">
+            <h2>Uh-oh, you ran into an obstacle!</h2>
+            <p>Your time was <span id="insertTime"></span></p>
+            <p>Your time has been recorded successfully<br>Click below to try again</p>
+            <button class="large" type="submit" id="retry">RETRY</button>
+        </div>
     </div>
     <footer>
         <button type="button" class="button left">How To Play</button>
