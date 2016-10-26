@@ -35,6 +35,8 @@
 
 #spacebar {
     border: 2px solid black;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     height: 30px;
     width: 80px;
