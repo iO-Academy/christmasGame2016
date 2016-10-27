@@ -1,3 +1,7 @@
+function gameStartHandler() {
+    $(document).on("keydown", gameStart)
+}
+
 function gameStart(e) {
     var initialSpeed = 0.09,
         speed = initialSpeed,
@@ -72,9 +76,6 @@ function stopPlay() {
     gameStartHandler()
 }
 
-function gameStartHandler() {
-    $(document).on("keydown", gameStart)
-}
 
 
 
