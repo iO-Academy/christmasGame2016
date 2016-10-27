@@ -70,12 +70,7 @@ function animate2(level, canvasWidth, speed) {
 }
 
 function stopPlay() {
-    $("#game .level").stop()
-    $("#game .level").remove()
+    $("#game .level").stop().remove()
     stopSnowman()
     gameStartHandler()
 }
-
-
-
-
