@@ -5,7 +5,7 @@ function gameStart(e) {
         counter = 0,
         maxSpeed = initialSpeed * Math.pow(increaseFactor, 7)
     if (e.keyCode == 32) {
-        $(document).off('keydown', gameStart)
+        $(document).off("keydown", gameStart)
         moveSnowman()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
@@ -16,13 +16,12 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
         totalLevels = $("#levelContainer .level").length,
         canvasWidth = $("#game").width(),
         speedIncrementer = Math.floor(counter / totalLevels)
+
+    speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     if (speed >= maxSpeed) {
         speed = maxSpeed
-    } else if (initialSpeed * Math.pow(increaseFactor, speedIncrementer) > maxSpeed) {
-       speed = maxSpeed
-    } else {
-        speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     }
+
     counter++
     $loadedLevel = load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer)
 
@@ -76,9 +75,8 @@ function stopPlay() {
     gameStartHandler()
 }
 
-
 function gameStartHandler() {
-    $(document).on('keydown', gameStart)
+    $(document).on("keydown", gameStart)
 }
 
 
