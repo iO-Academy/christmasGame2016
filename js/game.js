@@ -1,12 +1,15 @@
 
 /**
+ * Sets:
+ * initialSpeed, the speed of level movement when the game begins (px/ms);
+ * speed, the current speed of level movement (px/ms);
+ * increaseFactor, the amount speed is multiplied by on every increase;
+ * counter, indicates the number of times gameLoop() has been executed, i.e. how many levels have passed through the
+ *  game area;
+ * maxSpeed, the upper limit for level movement speed (px/ms).
+ *
  * Activated by a keyDown. If the key pressed is the space bar, then the keyDown listener is turned off
  * and moveSnowman() and gameLoop() are called.
- * Also, sets:
- * initialSpeed, the initial speed of level movement;
- * increaseFactor, the rate at which this speed increases;
- * counter, the level counter, and
- * maxSpeed, the maximum speed of level movement.
  *
  * @param e OBJECT keyDown event
  */
@@ -23,6 +26,25 @@ function gameStart(e) {
     }
 }
 
+/**
+ * Sets:
+ * $loadedLevel, the object whose properties 0 & 1 contain the two levels that are currently loaded into #game;
+ * totalLevels, the total number of levels available for play;
+ * gameWidth, the width of the game area inside the white frame (px);
+ * speedIncrementer, records the counter, modulo the total number of levels, e.g. if there are 8 levels in total, this
+ *  increments by 1 every time 8 levels pass through the game area.
+ *
+ * Multiplies speed by increaseFactor if counter is a multiple of totalLevels, capping it at maxSpeed if exceeded.
+ * Calls load() and assigns the returned value to $loadedLevel.
+ * Calls animate1().
+ *
+ * @param speed NUMBER the current speed of level movement (px/ms)
+ * @param maxSpeed NUMBER the upper limit for level movement speed (px/ms)
+ * @param increaseFactor NUMBER the amount speed is multiplied by on every increase
+ * @param initialSpeed NUMBER the speed of level movement when the game begins (px/ms)
+ * @param counter NUMBER indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
+ * through the game area;
+ */
 function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
     var $loadedLevel,
         totalLevels = $("#levelContainer .level").length,
