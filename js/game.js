@@ -4,9 +4,9 @@ function savePlay(uid, time, attempt) {
         url:"api/",
         data:{
             "action": "saveAttempt",
-            "uid":uid,
-            "time":time,
-            "attempt":attempt
+            "uid": uid,
+            "time": time,
+            "attempt": attempt
         },
         success: function(data) {
             console.log(data)
