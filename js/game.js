@@ -28,11 +28,12 @@ function gameStart(e) {
 
 /**
  * Sets:
- * $loadedLevel, the object whose properties 0 & 1 contain the two levels that are currently loaded into #game;
+ * $loadedLevel, a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently loaded
+ *      into #game;
  * totalLevels, the total number of levels available for play;
  * gameWidth, the width of the game area inside the white frame (px);
  * speedIncrementer, records the counter, modulo the total number of levels, e.g. if there are 8 levels in total, this
- *  increments by 1 every time 8 levels pass through the game area.
+ *      increments by 1 every time 8 levels pass through the game area.
  *
  * Multiplies speed by increaseFactor if counter is a multiple of totalLevels, capping it at maxSpeed if exceeded.
  * Calls load() and assigns the returned value to $loadedLevel.
@@ -43,7 +44,7 @@ function gameStart(e) {
  * @param increaseFactor NUMBER the amount speed is multiplied by on every increase
  * @param initialSpeed NUMBER the speed of level movement when the game begins (px/ms)
  * @param counter NUMBER indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
- * through the game area;
+ * through the game area
  */
 function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
     var $loadedLevel,
@@ -63,6 +64,29 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
     animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
 }
 
+/**
+ * Sets:
+ * rand, a random integer between 1 and totalLevels (inclusive), indicating the next level to be loaded;
+ * selectedLevel, a STRING containing the CSS selector for the level determined by rand;
+ * $selectedLevel, a jQuery OBJECT containing the next level (the DOM OBJECT selected by selectedLevel) to be loaded
+ *      into #game;
+ * $loadedLevel, a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently loaded
+ *      into #game;
+ *
+ * Randomly selects a level, clones it and appends the clone to #game, moves it to the left of the game area, ready for
+ * animation and updates $loadedLevel.
+ *
+ * @param gameWidth NUMBER the width of the game area inside the white frame (px)
+ * @param totalLevels NUMBER the total number of levels available for play
+ * @param counter NUMBER indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
+ * through the game area
+ * @param increaseFactor NUMBER the amount speed is multiplied by on every increase
+ * @param speedIncrementer NUMBER records the counter, modulo the total number of levels, e.g. if there are 8 levels in
+ * total, this increments by 1 every time 8 levels pass through the game area
+ *
+ * @returns $loadedLevel OBJECT a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are
+ * currently loaded into #game
+ */
 function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels),
         selectedLevel = "#levelContainer .level" + rand,
