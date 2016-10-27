@@ -196,7 +196,7 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         {
             step: function(screenPos) {
                 if(collides($player.position(), playerSize, objArray, screenPos)){
-                    $('#game .level').stop()
+                    stopPlay()
                 }
             },
             duration: dur1,
@@ -232,7 +232,7 @@ function animate2(level, gameWidth, speed) {
         {
             step: function(screenPos) {
                 if(collides($player.position(), playerSize, objArray, screenPos)){
-                    $('#game .level').stop()
+                    stopPlay()
                 }
             },
             duration: dur2,
