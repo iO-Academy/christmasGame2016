@@ -22,6 +22,7 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
         speedIncrementer = Math.floor(counter / totalLevels)
 
     speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
+    
     if (speed >= maxSpeed) {
         speed = maxSpeed
     }
@@ -43,7 +44,6 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
 }
 
 function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
-
     var level = $loadedLevel.last(),
         levWidth = level.width(),
         dur1 = levWidth / speed
@@ -58,7 +58,7 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
             left: - (levWidth - canvasWidth)
         },
         {
-            step:function (){
+            step: function() {
             },
             duration: dur1,
             easing: "linear",
@@ -70,7 +70,6 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
 }
 
 function animate2(level, canvasWidth, speed) {
-
     var levWidth = level.width(),
         dur2 = canvasWidth / speed
 
@@ -79,7 +78,7 @@ function animate2(level, canvasWidth, speed) {
             left: - levWidth
         },
         {
-            step:function (){
+            step: function() {
             },
             duration: dur2,
             easing: "linear",
