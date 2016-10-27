@@ -21,10 +21,19 @@ function openPopup($element) {
  * Clear cloned content
  * Hide popup
  */
-function closePopup() {
-    $(".notificationPopUp").fadeOut(function() {
-        $(this).remove()
-    })
+function closePopup(callback) {
+    if($(".notificationPopUp").length > 0) {
+        $(".notificationPopUp").fadeOut(function () {
+            $(".notificationPopUp, table").remove()
+            if (typeof callback == "function") {
+                callback()
+            }
+        })
+    } else {
+        if (typeof callback == "function") {
+            callback()
+        }
+    }
 }
 
 /*
