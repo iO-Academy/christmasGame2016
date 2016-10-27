@@ -1,3 +1,15 @@
+
+/**
+ * Activated by a keyDown. If the key pressed is the space bar, then the keyDown listener is turned off
+ * and moveSnowman() and gameLoop() are called.
+ * Also, sets:
+ * initialSpeed, the initial speed of level movement;
+ * increaseFactor, the rate at which this speed increases;
+ * counter, the level counter, and
+ * maxSpeed, the maximum speed of level movement.
+ *
+ * @param e OBJECT keyDown event
+ */
 function gameStart(e) {
     var initialSpeed = 0.09,
         speed = initialSpeed,
