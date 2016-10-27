@@ -1,4 +1,16 @@
 var objArray = []
+var $player
+var playerSize
+
+function init() {
+
+    $player = $("#snowman")
+    playerSize = {
+        width: $player.width(),
+        height: $player.height()
+    }
+    console.log($player.position())
+}
 
 function gameStartHandler() {
     $(document).on("keydown", gameStart)
