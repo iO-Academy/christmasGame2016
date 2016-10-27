@@ -150,6 +150,95 @@
     height: 185px;
 }
 
+.level4 .img1 {
+     left: 0;
+     height: 370px;
+ }
+
+.level4 .img2 {
+    left: 430px;
+    top: 130px;
+    height: 220px;
+    width: 153px;
+}
+
+.level4 .img3 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img4 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img5 {
+    left: 1090px;
+    top: 120px;
+    height: 180px;
+}
+
+.level4 .img6 {
+    left: 1490px;
+    height: 340px;
+}
+
+.level5 .img1 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    bottom: -110px;
+}
+
+.level5 .img2 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    top: -110px;
+}
+
+.level5 .img3 {
+    left: 490px;
+    height: 350px;
+    width: 243px;
+    bottom: -20px;
+}
+
+.level5 .img4 {
+    left: 960px;
+    height: 220px;
+    width: 153px;
+    top: 100px;
+}
+
+.level5 .img5 {
+    left: 1430px;
+    height: 180px;
+    width: 125px;
+    top: -110px;
+}
+
+.level5 .img6 {
+    left: 1385px;
+    height: 320px;
+    width: 222px;
+    bottom: -20px;
+}
+
+.level5 .img7 {
+    left: 1950px;
+    height: 270px;
+    width: 187px;
+    top: -20px;
+}
+
+.level5 .img8 {
+    left: 2200px;
+    height: 250px;
+    width: 174px;
+    bottom: -10px;
+}
+
 
 
 
