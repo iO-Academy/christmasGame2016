@@ -59,7 +59,6 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
         },
         {
             step:function (){
-                console.log(speed)
             },
             duration: dur1,
             easing: "linear",
@@ -81,7 +80,6 @@ function animate2(level, canvasWidth, speed) {
         },
         {
             step:function (){
-                console.log(speed)
             },
             duration: dur2,
             easing: "linear",
