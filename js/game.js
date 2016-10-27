@@ -8,11 +8,13 @@
  *  game area;
  * maxSpeed, the upper limit for level movement speed (px/ms).
  *
- * Activated by a keyDown.
- * If the key pressed is the space bar, then the keyDown listener is turned off and moveSnowman() and gameLoop() are
- * called.
+ * Activated by a keydown.
+ * If the key pressed is the space bar, then:
+ * the keydown listener with gameStart() as the callback method is turned off;
+ * moveSnowman()is called;
+ * gameLoop() is called.
  *
- * @param e OBJECT keyDown event
+ * @param e OBJECT keydown event
  */
 function gameStart(e) {
     var initialSpeed = 0.09,
@@ -174,8 +176,7 @@ function animate2(level, gameWidth, speed) {
 }
 
 /**
- * Stops animation of levels in #game.
- * Removes levels from #game.
+ * Stops animation of levels and removes them from #game.
  * Stops animation of the snowman avatar.
  * Calls gameStartHandler.
  */
@@ -186,7 +187,9 @@ function stopPlay() {
     gameStartHandler()
 }
 
-
+/**
+ * Sets an event listener for the keydown event, with gameStart as the callback method.
+ */
 function gameStartHandler() {
     $(document).on('keydown', gameStart)
 }
