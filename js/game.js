@@ -20,7 +20,8 @@ function gameStart(e) {
         increaseFactor = 1.1, //the amount speed is multiplied by on every increase
         counter = 0, //indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
                      //through the game area
-        maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //the upper limit for level movement speed (px/ms)
+        maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //the upper limit for level movement speed (px/ms), the
+                                                              //exponent was chosen by trial and improvement
     if (e.keyCode == 32) { //checking if the key pressed was the space bar
         $(document).off("keydown", gameStart)
         moveSnowman()
@@ -86,7 +87,8 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
 
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css("left", gameWidth + 150)
+    $loadedLevel.last().css("left", gameWidth + 150) //the width added on to separate the levels was chosen by trial and
+                                                     //improvement
     return $loadedLevel
 }
 
@@ -117,7 +119,8 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         dur1 = levWidth / speed //the duration of animation (ms)
 
     if (counter % totalLevels == 0) {
-        var wait = (dur1/8) //the delay put onto the animation of the first level after a speed increase
+        var wait = (dur1/8) //the delay put onto the animation of the first level after a speed increase, the divisor
+                            //was chosen by trial and improvement
         level.delay(wait)
     }
 
