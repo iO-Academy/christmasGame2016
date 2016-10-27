@@ -35,9 +35,9 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
         $loadedLevel
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css({
-        "left": canvasWidth + 150
-    })
+    $loadedLevel.last().css(
+        "left", canvasWidth + 150
+    )
     return $loadedLevel
 }
 
