@@ -1,3 +1,5 @@
+var objArray = []
+
 function gameStartHandler() {
     $(document).on("keydown", gameStart)
 }
@@ -40,6 +42,48 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
     $loadedLevel.last().css("left", canvasWidth + 150)
+
+    $.each($selectedLevel.children(), function(){
+        var obj = this;
+        var $obj = $(this)
+        if($(obj).hasClass('snowman')){
+
+            objArray.push(
+                {
+                    top: $obj.position().top,
+                    left: $obj.position().left,
+                    width: $obj.width(),
+                    height: $obj.height(),
+                    isSnowman: true,
+                    //obj containing:   left/top positions relative to level position
+                    head: {
+                        top: $obj.position().top
+                        + ($('.head', obj).position().top),
+                        left: $obj.position().left
+                        + ($('.head', obj).position().left),
+                        radius: $('.head', obj).width() / 2
+                    },
+                    body: {
+                        top: $obj.position().top
+                        + ($('.body', obj).position().top),
+                        left: $obj.position().left,
+                        radius: $('.body', obj).width() / 2
+                    }
+                })
+        }
+        else {
+            objArray.push(
+                {
+                    top: $obj.position().top,
+                    left: $obj.position().left,
+                    width: $obj.width(),
+                    height: $obj.height(),
+                    isSnowman: false
+                }
+            )
+        }
+    })
+
     return $loadedLevel
 }
 
