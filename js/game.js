@@ -1,4 +1,28 @@
-$(function() {
+function savePlay(uid, time, attempt) {
+    $.ajax({
+        method:"post",
+        url:"api/",
+        data:{
+            "action": "saveAttempt",
+            "uid":uid,
+            "time":time,
+            "attempt":attempt
+        },
+        success: function(data) {
+            console.log(data)
+            if (!data.success) {
+                // @todo show an error in the die screen
+            }
+        },
+        error: function(data) {
+            // @todo show an error in the die screen
+            console.log(data)
+        }
+    })
+}
+
+$(function()
+{
 
     function gameLoop(counter, totalLevels, canvasWidth, initialSpeed, speed, increaseFactor, maxSpeed) {
             var rand = Math.ceil(Math.random() * totalLevels),
@@ -51,3 +75,4 @@ $(function() {
         }
     })
 })
+
