@@ -1,3 +1,7 @@
+function gameStartHandler() {
+    $(document).on("keydown", gameStart)
+}
+
 function gameStart(e) {
     var initialSpeed = 0.09,
         speed = initialSpeed,
@@ -5,7 +9,7 @@ function gameStart(e) {
         counter = 0,
         maxSpeed = initialSpeed * Math.pow(increaseFactor, 7)
     if (e.keyCode == 32) {
-        $(document).off('keydown', gameStart)
+        $(document).off("keydown", gameStart)
         moveSnowman()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
@@ -16,34 +20,30 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
         totalLevels = $("#levelContainer .level").length,
         canvasWidth = $("#game").width(),
         speedIncrementer = Math.floor(counter / totalLevels)
+
+    speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
+    
     if (speed >= maxSpeed) {
         speed = maxSpeed
-    } else if (initialSpeed * Math.pow(increaseFactor, speedIncrementer) > maxSpeed) {
-       speed = maxSpeed
-    } else {
-        speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     }
+
     counter++
     $loadedLevel = load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer)
-
     animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
 }
 
 function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels),
-        selectedLevel = "#levelContainer .level" + rand,
-        $selectedLevel = $(selectedLevel),
+        $selectedLevel = $("#levelContainer .level" + rand),
         $loadedLevel
+
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css({
-        "left": canvasWidth + 150
-    })
+    $loadedLevel.last().css("left", canvasWidth + 150)
     return $loadedLevel
 }
 
 function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
-
     var level = $loadedLevel.last(),
         levWidth = level.width(),
         dur1 = levWidth / speed
@@ -58,7 +58,7 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
             left: - (levWidth - canvasWidth)
         },
         {
-            step:function (){
+            step: function() {
             },
             duration: dur1,
             easing: "linear",
@@ -70,7 +70,6 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
 }
 
 function animate2(level, canvasWidth, speed) {
-
     var levWidth = level.width(),
         dur2 = canvasWidth / speed
 
@@ -79,7 +78,7 @@ function animate2(level, canvasWidth, speed) {
             left: - levWidth
         },
         {
-            step:function (){
+            step: function() {
             },
             duration: dur2,
             easing: "linear",
@@ -90,16 +89,7 @@ function animate2(level, canvasWidth, speed) {
 }
 
 function stopPlay() {
-    $("#game .level").stop()
-    $("#game .level").remove()
+    $("#game .level").stop().remove()
     stopSnowman()
     gameStartHandler()
 }
-
-
-function gameStartHandler() {
-    $(document).on('keydown', gameStart)
-}
-
-
-
