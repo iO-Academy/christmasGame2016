@@ -15,7 +15,7 @@ function gameStart(e) {
         counter = 0, //indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
                      //through the game area
         maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //the upper limit for level movement speed (px/ms)
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32) { //checking if the key pressed was the space bar
         $(document).off('keydown', gameStart)
         moveSnowman()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
