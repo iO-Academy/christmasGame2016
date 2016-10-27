@@ -1,6 +1,7 @@
 $(function() {
 
-    $("form").submit(function() {
+    $("#newUserReg").submit(function() {
+        var ajaxErrorMessage = "Unexpected error. Please try again."
         var obj = {}
         obj.userName = $("#username").val()
         obj.userEmail = $("#email").val()
@@ -10,7 +11,17 @@ $(function() {
             $.ajax({
                 method: "POST",
                 url: "api/",
-                data: obj
+                data: obj,
+                success: function(data) {
+                    console.log(data)
+                    if (!data.success) {
+                        $("#error").text(ajaxErrorMessage)
+                    }
+                },
+                error: function(data) {
+                    console.log(data)
+                    $("#error").text(ajaxErrorMessage)
+                }
             })
             $("#error").text("")
         } else {
