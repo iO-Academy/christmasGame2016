@@ -195,7 +195,8 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         },
         {
             step: function(screenPos) {
-                if(collides($player.position(), playerSize, objArray, screenPos)){
+                var currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
+                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
             },
@@ -231,7 +232,8 @@ function animate2(level, gameWidth, speed) {
         },
         {
             step: function(screenPos) {
-                if(collides($player.position(), playerSize, objArray, screenPos)){
+                var currentObjArray = objArray.slice(0, level.children().length)
+                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
             },
@@ -268,16 +270,17 @@ function stopPlay() {
  */
 function collides(playerPos, playerSize, obsArray, screenPos) {
 
+    console.log(screenPos)
+
     var collides = false
 
-    $.each(obsArray, function() {
+    $.each(obsArray, function(i) {
         if(!this.isSnowman) {
-            if (
-                ((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
+            if (((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
                 ((playerPos.top + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > playerPos.left) &&
-                ((this.top + this.height) > playerPos.top)
-            ) {
+                ((this.top + this.height) > playerPos.top))
+            {
                 collides = true
             }
         }
