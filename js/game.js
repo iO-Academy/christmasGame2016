@@ -1,4 +1,4 @@
-$(function() {
+
 
     function gameStart(e) {
         var initialSpeed = 0.09,
@@ -83,6 +83,6 @@ $(function() {
             gameStart(e)
         })
     }
-     gameStartHandler()
 
-})
+
+
