@@ -1,3 +1,9 @@
+/**
+ * Sets an event listener for the keydown event, with gameStart() as the callback method.
+ */
+function gameStartHandler() {
+    $(document).on("keydown", gameStart)
+}
 
 /**
  * Activated by a keydown.
@@ -16,7 +22,7 @@ function gameStart(e) {
                      //through the game area
         maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //the upper limit for level movement speed (px/ms)
     if (e.keyCode == 32) { //checking if the key pressed was the space bar
-        $(document).off('keydown', gameStart)
+        $(document).off("keydown", gameStart)
         moveSnowman()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
@@ -43,16 +49,14 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
         speedIncrementer = Math.floor(counter / totalLevels) //records the counter, modulo the total number of levels,
                                                              //e.g. if there are 8 levels in total, this increments by
                                                              //1 every time 8 levels pass through the game area
+
+    speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     if (speed >= maxSpeed) {
         speed = maxSpeed
-    } else if (initialSpeed * Math.pow(increaseFactor, speedIncrementer) > maxSpeed) {
-       speed = maxSpeed
-    } else {
-        speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     }
+
     counter++
     $loadedLevel = load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
-
     animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
 }
 
@@ -73,17 +77,16 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
  */
 function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels), //a random integer between 1 and totalLevels (inclusive),
-                                                       //indicating the next level to be loaded
-        $selectedLevel = $(selectedLevel), //a jQuery OBJECT containing the next level (DOM OBJECT) to be loaded into
-                                           //#game, determined by a CSS selector containing rand
+        //indicating the next level to be loaded
+        $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
+                                                             //be loaded into #game, determined by a CSS selector
+                                                             //containing rand
         $loadedLevel //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently
-                     // loaded into #game
+                     //loaded into #game
 
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css({
-        "left": gameWidth + 150
-    })
+    $loadedLevel.last().css("left", gameWidth + 150)
     return $loadedLevel
 }
 
@@ -112,16 +115,26 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                                      //(DOM OBJECT), that which is to be animated
         levWidth = level.width(), //the width of level (px)
         dur1 = levWidth / speed //the duration of animation (ms)
+
     if (counter % totalLevels == 0) {
         var wait = (dur1/8) //the delay put onto the animation of the first level after a speed increase
         level.delay(wait)
     }
-            level.animate({
-        left: - (levWidth - gameWidth)
-    }, dur1, "linear", function() {
+
+    level.animate(
+        {
+            left: - (levWidth - gameWidth)
+        },
+        {
+            step: function() {
+            },
+            duration: dur1,
+            easing: "linear",
+            complete: function() {
                 animate2(level, gameWidth, speed)
-       gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
-    })
+                gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+            }
+        })
 }
 
 /**
@@ -137,14 +150,22 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
  * @param speed NUMBER the current speed of level movement (px/ms)
  */
 function animate2(level, gameWidth, speed) {
-    var
-        levWidth = level.width(), //the width of level (px)
-    dur2 = gameWidth / speed //the duration of animation (ms)
-    level.animate({
-        left: - levWidth
-    }, dur2, "linear", function() {
-        level.remove()
-    })
+    var levWidth = level.width(), //the width of level (px)
+        dur2 = gameWidth / speed //the duration of animation (ms)
+
+    level.animate(
+        {
+            left: - levWidth
+        },
+        {
+            step: function() {
+            },
+            duration: dur2,
+            easing: "linear",
+            complete: function() {
+                level.remove()
+            }
+        })
 }
 
 /**
@@ -153,18 +174,7 @@ function animate2(level, gameWidth, speed) {
  * Calls gameStartHandler().
  */
 function stopPlay() {
-    $("#game .level").stop()
-    $("#game .level").remove()
+    $("#game .level").stop().remove()
     stopSnowman()
     gameStartHandler()
 }
-
-/**
- * Sets an event listener for the keydown event, with gameStart() as the callback method.
- */
-function gameStartHandler() {
-    $(document).on('keydown', gameStart)
-}
-
-
-
