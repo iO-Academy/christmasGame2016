@@ -20,9 +20,7 @@ button span {
 }
 
 #close {
-    position: absolute;
-    top: 450px;
-    left: 20px;
+    margin-left: 10px;
 }
 
 #game #leaderboard {
