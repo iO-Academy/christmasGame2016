@@ -1,0 +1,59 @@
+.snowman {
+    width: 250px;
+    height: 360px;
+    position: absolute;
+}
+
+.snowman .head {
+    width: 62%;
+    height: 43%;
+    background-color: #ffffff ;
+    border-radius: 50%;
+    left: 18.8%;
+    position: absolute;
+    top: 0;
+}
+
+.snowman .body {
+    width: 100%;
+    height: 69.4%;
+    background-color: #ffffff ;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+}
+
+.snowman .head::before,
+.snowman .head::after
+{
+    content: "";
+    width: 9.7%;
+    height: 9.7%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.76);
+    position: absolute;
+}
+
+.snowman .head::before {
+    left: 29%;
+    top: 32.3%;
+}
+
+.snowman .head::after {
+    left: 61.3%;
+    top: 32.3%;
+}
+
+.snowman .body::before {
+    content: "";
+    background: url("../assets/snowman_nose.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 16%;
+    height: 16%;
+    position: absolute;
+    top: -8%;
+    left: 42%;
+}

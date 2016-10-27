@@ -3,6 +3,7 @@
     top: 100%;
     width: 100%;
     height: 100%;
+    display: none;
 }
 
 .level1 {
@@ -15,6 +16,14 @@
 
 .level3 {
     width: 1650px;
+}
+
+.level4 {
+    width: 1800px;
+}
+
+.level5 {
+    width: 2600px;
 }
 
 .level {
@@ -48,34 +57,28 @@
 
 .level1 .img1 {
     height: 250px;
-    position: absolute;
-    bottom: 0;
+    width: 174px;
     left: 20px;
 }
 
 .level1 .img2 {
     height: 100px;
-    position: absolute;
+    width: 69.5px;
     bottom: 250px;
     left: 70px;
 }
 
 .level1 .img3 {
-    position: absolute;
-    bottom: 0;
     left: 500px;
     height: 370px;
 }
 
 .level1 .img4 {
-    position: absolute;
-    bottom: 0;
     left: 250px;
     height: 185px;
 }
 
 .level1 .img5 {
-    position: absolute;
     left: 950px;
     height: 300px;
     top: 60px;
@@ -84,7 +87,6 @@
 .level1 .img6 {
     height: 185px;
     left: 250px;
-    top: 0;
     transform: rotate(180deg);
 }
 
@@ -99,6 +101,7 @@
 }
 
 .level2 .img3 {
+    height: 72px;
     width: 50px;
     bottom: 100px;
     left: 200px;
@@ -111,6 +114,7 @@
 
 .level2 .img5 {
     width: 200px;
+    height: 288px;
     left: 650px;
 }
 
@@ -149,6 +153,95 @@
 .level3 .img8 {
     left: 1350px;
     height: 185px;
+}
+
+.level4 .img1 {
+     left: 0;
+     height: 370px;
+ }
+
+.level4 .img2 {
+    left: 430px;
+    top: 130px;
+    height: 220px;
+    width: 153px;
+}
+
+.level4 .img3 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img4 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img5 {
+    left: 1090px;
+    top: 120px;
+    height: 180px;
+}
+
+.level4 .img6 {
+    left: 1490px;
+    height: 340px;
+}
+
+.level5 .img1 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    bottom: -110px;
+}
+
+.level5 .img2 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    top: -110px;
+}
+
+.level5 .img3 {
+    left: 490px;
+    height: 350px;
+    width: 243px;
+    bottom: -20px;
+}
+
+.level5 .img4 {
+    left: 960px;
+    height: 220px;
+    width: 153px;
+    top: 100px;
+}
+
+.level5 .img5 {
+    left: 1430px;
+    height: 180px;
+    width: 125px;
+    top: -110px;
+}
+
+.level5 .img6 {
+    left: 1385px;
+    height: 320px;
+    width: 222px;
+    bottom: -20px;
+}
+
+.level5 .img7 {
+    left: 1950px;
+    height: 270px;
+    width: 187px;
+    top: -20px;
+}
+
+.level5 .img8 {
+    left: 2200px;
+    height: 250px;
+    width: 174px;
+    bottom: -10px;
 }
 
 
