@@ -21,3 +21,10 @@ form input {
     font-weight: bold;
     text-align: center;
 }
+
+#timer {
+    color: #ec8024;
+    font-size: 30px;
+    text-align: center;
+
+}
