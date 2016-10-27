@@ -9,7 +9,7 @@ function init() {
         width: $player.width(),
         height: $player.height()
     }
-    console.log($player.position())
+
 }
 
 function gameStartHandler() {
@@ -117,7 +117,6 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
             step: function(screenPos) {
                 if(collides($player.position(), playerSize, objArray, screenPos)){
                     $('#game .level').stop()
-                    console.log("hit")
                 }
             },
             duration: dur1,
@@ -141,12 +140,12 @@ function animate2(level, canvasWidth, speed) {
             step: function(screenPos) {
                 if(collides($player.position(), playerSize, objArray, screenPos)){
                     $('#game .level').stop()
-                    console.log("hit")
                 }
             },
             duration: dur2,
             easing: "linear",
             complete: function() {
+                objArray = objArray.slice(level.children().length, objArray.length)
                 level.remove()
             }
         })
@@ -163,27 +162,21 @@ function collides(player, playerSize, object, screenPos) {
 
 var collides = false
 
-
     //for each object being displayed on screen
     //if not snowman: box collide on img
     //if snowman: box collide on both head and body
     $.each(object, function(i) {
         if(!this.isSnowman) {
-            // console.log("object")
             if (
                 ((player.left + playerSize.width) > (this.left + screenPos)) &&
                 ((player.top + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > player.left) &&
                 ((this.top + this.height) > player.top)
             ) {
-                // console.log("player pos " + player.left + " " + player.top)
-                // console.log("obj pos: " + (this.left + screenPos) + " " + this.top)
-                // console.log("obj " + i + " size " + this.height)
                 collides = true
             }
         }
         else {
-            console.log("snowman")
             if  ((((player.left + playerSize.width) > (this.head.left + screenPos))
                 && ((player.top + playerSize.height) > this.head.top)
                 && (((this.head.left + screenPos) + (this.head.radius*2)) > player.left)
@@ -194,8 +187,6 @@ var collides = false
                 && (((this.body.left + screenPos) + (this.body.radius*2)) > player.left)
                 && (this.body.top + (this.body.radius*2) > player.top)))
             {
-                console.log("player pos " + player.left + " " + player.top)
-                console.log("obj pos: " + (this.left + screenPos) + " " + this.top)
                 collides = true
             }
         }
