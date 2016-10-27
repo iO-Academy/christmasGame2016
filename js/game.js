@@ -15,7 +15,7 @@ function gameStartHandler() {
  * @param e OBJECT keydown event
  */
 function gameStart(e) {
-    var initialSpeed = 0.3, //the speed of level movement when the game begins (px/ms)
+    var initialSpeed = 0.09, //the speed of level movement when the game begins (px/ms)
         speed = initialSpeed, //the current speed of level movement (px/ms)
         increaseFactor = 1.1, //the amount speed is multiplied by on every increase
         increaseLimit = 7, //the number of times the speed will increase before reaching the maximum
