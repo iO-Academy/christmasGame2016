@@ -26,7 +26,7 @@ function gameStart(e) {
 function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
     var $loadedLevel,
         totalLevels = $("#levelContainer .level").length,
-        canvasWidth = $("#game").width(),
+        gameWidth = $("#game").width(),
         speedIncrementer = Math.floor(counter / totalLevels)
     if (speed >= maxSpeed) {
         speed = maxSpeed
@@ -36,12 +36,12 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
         speed = initialSpeed * Math.pow(increaseFactor, speedIncrementer)
     }
     counter++
-    $loadedLevel = load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer)
+    $loadedLevel = load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
 
-    animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
+    animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
 }
 
-function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
+function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels),
         selectedLevel = "#levelContainer .level" + rand,
         $selectedLevel = $(selectedLevel),
@@ -49,12 +49,12 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
     $loadedLevel.last().css({
-        "left": canvasWidth + 150
+        "left": gameWidth + 150
     })
     return $loadedLevel
 }
 
-function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
+function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
     var level = $loadedLevel.last(),
         levWidth = level.width(),
         dur1 = levWidth / speed
@@ -63,17 +63,17 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
         level.delay(wait)
     }
             level.animate({
-        left: - (levWidth - canvasWidth)
+        left: - (levWidth - gameWidth)
     }, dur1, "linear", function() {
-                animate2(level, canvasWidth, speed)
+                animate2(level, gameWidth, speed)
        gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     })
 }
 
-function animate2(level, canvasWidth, speed) {
+function animate2(level, gameWidth, speed) {
     var
         levWidth = level.width(),
-    dur2 = canvasWidth / speed
+    dur2 = gameWidth / speed
     level.animate({
         left: - levWidth
     }, dur2, "linear", function() {
