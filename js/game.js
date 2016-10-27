@@ -2,6 +2,10 @@ var objArray = []
 var $player
 var playerSize
 
+/**
+* Sets the player variables.
+* is called when game page is loaded.
+*/
 function init() {
 
     $player = $("#snowman")
