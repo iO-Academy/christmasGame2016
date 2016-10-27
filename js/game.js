@@ -43,7 +43,7 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
     $loadedLevel = $("#game .level")
     $loadedLevel.last().css("left", canvasWidth + 150)
 
-    $.each($selectedLevel.children(), function(){
+    $.each($loadedLevel.last().children(), function(){
         var obj = this;
         var $obj = $(this)
         if($(obj).hasClass('snowman')){
@@ -141,25 +141,29 @@ function stopPlay() {
 //pass in player as .position() obj
 function collides(player, playerSize, object, screenPos) {
 
-    var collides = false
+var collides = false
+
 
     //for each object being displayed on screen
     //if not snowman: box collide on img
     //if snowman: box collide on both head and body
-    $.each(object, function() {
+    $.each(object, function(i) {
         if(!this.isSnowman) {
+            // console.log("object")
             if (
                 ((player.left + playerSize.width) > (this.left + screenPos)) &&
                 ((player.top + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > player.left) &&
                 ((this.top + this.height) > player.top)
             ) {
-                console.log("player pos " + player.left + " " + player.top)
-                console.log("obj pos: " + (this.left + screenPos) + " " + this.top)
+                // console.log("player pos " + player.left + " " + player.top)
+                // console.log("obj pos: " + (this.left + screenPos) + " " + this.top)
+                // console.log("obj " + i + " size " + this.height)
                 collides = true
             }
         }
         else {
+            console.log("snowman")
             if  ((((player.left + playerSize.width) > (this.head.left + screenPos))
                 && ((player.top + playerSize.height) > this.head.top)
                 && (((this.head.left + screenPos) + (this.head.radius*2)) > player.left)
@@ -178,5 +182,4 @@ function collides(player, playerSize, object, screenPos) {
     })
 
     return collides
-
 }
