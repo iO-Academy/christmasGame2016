@@ -36,6 +36,7 @@ function gameStart(e) {
  *      increments by 1 every time 8 levels pass through the game area.
  *
  * Multiplies speed by increaseFactor if counter is a multiple of totalLevels, capping it at maxSpeed if exceeded.
+ * Increments counter by 1
  * Calls load() and assigns the returned value to $loadedLevel.
  * Calls animate1().
  *
@@ -73,7 +74,7 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
  * $loadedLevel, a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently loaded
  *      into #game;
  *
- * Randomly selects a level, clones it and appends the clone to #game, moves it to the left of the game area, ready for
+ * Randomly selects a level, clones it and appends the clone to #game, moves it to the right of the game area, ready for
  * animation and updates $loadedLevel.
  *
  * @param gameWidth NUMBER the width of the game area inside the white frame (px)
@@ -100,6 +101,32 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
     return $loadedLevel
 }
 
+/**
+ * Sets:
+ * level, a jQuery OBJECT whose property 0 contains the most recently loaded level (DOM OBJECT), that which is to be
+ *      animated;
+ * levWidth, the width of level (px);
+ * dur1, the duration of animation that will ensure that its movement speed is the same as the value of the speed
+ *      variable (ms);
+ * wait, the delay put onto the animation of the first level after a speed increase.
+ *
+ * Applies a delay to the first level after a speed increase to prevent the obstacles from catching up with those in the
+ * previous, slower, level.
+ * Animates level to transition leftwards from its current position (to the right of the game area) until its right edge
+ * is aligned with the right edge of the game area.
+ * On completion of the animation, animate2() and gameLoop() are called.
+ *
+ * @param $loadedLevel OBJECT a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are
+ * currently loaded into #game
+ * @param gameWidth NUMBER the width of the game area inside the white frame (px)
+ * @param speed NUMBER the current speed of level movement (px/ms)
+ * @param maxSpeed NUMBER the upper limit for level movement speed (px/ms)
+ * @param increaseFactor NUMBER the amount speed is multiplied by on every increase
+ * @param initialSpeed NUMBER the speed of level movement when the game begins (px/ms)
+ * @param counter NUMBER indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
+ * through the game area
+ * @param totalLevels NUMBER totalLevels NUMBER the total number of levels available for play
+ */
 function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
     var level = $loadedLevel.last(),
         levWidth = level.width(),
