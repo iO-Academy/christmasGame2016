@@ -15,13 +15,15 @@ function gameStartHandler() {
  * @param e OBJECT keydown event
  */
 function gameStart(e) {
-    var initialSpeed = 0.09, //the speed of level movement when the game begins (px/ms)
+    var initialSpeed = 0.3, //the speed of level movement when the game begins (px/ms)
         speed = initialSpeed, //the current speed of level movement (px/ms)
         increaseFactor = 1.1, //the amount speed is multiplied by on every increase
+        increaseLimit = 7, //the number of times the speed will increase before reaching the maximum
         counter = 0, //indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
                      //through the game area
-        maxSpeed = initialSpeed * Math.pow(increaseFactor, 7) //the upper limit for level movement speed (px/ms), the
-                                                              //exponent was chosen by trial and improvement
+
+        maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
+                                                                          //(px/ms)
     if (e.keyCode == 32) { //checking if the key pressed was the space bar
         $(document).off("keydown", gameStart)
         moveSnowman()
@@ -82,13 +84,13 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
         $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
                                                              //be loaded into #game, determined by a CSS selector
                                                              //containing rand
-        $loadedLevel //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently
+        $loadedLevel, //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently
                      //loaded into #game
+        levelSeparator = 150 //the gap between consecutive levels, chosen by trial and improvement (px)
 
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css("left", gameWidth + 150) //the width added on to separate the levels was chosen by trial and
-                                                     //improvement
+    $loadedLevel.last().css("left", gameWidth + levelSeparator)
     return $loadedLevel
 }
 
@@ -116,11 +118,11 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
     var level = $loadedLevel.last(), //a jQuery OBJECT whose property 0 contains the most recently loaded level
                                      //(DOM OBJECT), that which is to be animated
         levWidth = level.width(), //the width of level (px)
-        dur1 = levWidth / speed //the duration of animation (ms)
+        dur1 = levWidth / speed, //the duration of animation (ms)
+        divisor = 8 //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
 
     if (counter % totalLevels == 0) {
-        var wait = (dur1/8) //the delay put onto the animation of the first level after a speed increase, the divisor
-                            //was chosen by trial and improvement
+        var wait = (dur1/divisor) //the delay put onto the animation of the first level after a speed increase
         level.delay(wait)
     }
 
