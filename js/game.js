@@ -85,6 +85,8 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
  * Randomly selects a level, clones it and appends the clone to #game, moves it to the right of the game area, ready for
  * animation and updates $loadedLevel.
  *
+ * creates an array of obstacles currently loaded.
+ *
  * @param gameWidth NUMBER the width of the game area inside the white frame (px)
  * @param totalLevels NUMBER the total number of levels available for play
  * @param counter NUMBER indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
@@ -161,6 +163,7 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
  * previous, slower, level.
  * Animates level to transition leftwards from its current position (to the right of the game area) until its right edge
  * is aligned with the right edge of the game area.
+ * During the animation, check for obstacle collision and if collides stop the animation.
  * On completion of the animation, animate2() and gameLoop() are called.
  *
  * @param $loadedLevel OBJECT a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are
@@ -210,7 +213,8 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
  * speed variable.
  * Animates level to transition leftwards from its current position (right-aligned with the game area) until its right edge
  * is aligned with the left edge of the game area (it's out of the play area).
- * Removes the animated level from #game.
+ * During the animation, check for obstacle collision and if collides stop the animation.
+ * On completeion of the animation, removes the animated level from #game and removes unloaded objects from objArray.
  *
  * @param level OBJECT a jQuery OBJECT whose property 0 contains the level (DOM OBJECT) that has just been passed through
  * animate1 and is to be animated here in animate2
@@ -251,35 +255,42 @@ function stopPlay() {
     gameStartHandler()
 }
 
-//pass in player as .position() obj
-function collides(player, playerSize, object, screenPos) {
+/**
+ * Checks if the player has collided with any of the obstacles currently loaded
+ * If obstacle is snowman, checks if collides with head or body separately
+ *
+ * @param playerPos OBJECT contains player left and top values
+ * @param playerSize OBJECT contains player width and height
+ * @param obsArray ARRAY contains all obstacles currently loaded
+ * @param screenPos NUMBER left value of level being animated
+ *
+ * @returns BOOLEAN is true if collides
+ */
+function collides(playerPos, playerSize, obsArray, screenPos) {
 
-var collides = false
+    var collides = false
 
-    //for each object being displayed on screen
-    //if not snowman: box collide on img
-    //if snowman: box collide on both head and body
-    $.each(object, function(i) {
+    $.each(obsArray, function() {
         if(!this.isSnowman) {
             if (
-                ((player.left + playerSize.width) > (this.left + screenPos)) &&
-                ((player.top + playerSize.height) > this.top) &&
-                (((this.left + screenPos) + this.width) > player.left) &&
-                ((this.top + this.height) > player.top)
+                ((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
+                ((playerPos.top + playerSize.height) > this.top) &&
+                (((this.left + screenPos) + this.width) > playerPos.left) &&
+                ((this.top + this.height) > playerPos.top)
             ) {
                 collides = true
             }
         }
         else {
-            if  ((((player.left + playerSize.width) > (this.head.left + screenPos))
-                && ((player.top + playerSize.height) > this.head.top)
-                && (((this.head.left + screenPos) + (this.head.radius*2)) > player.left)
-                && ((this.head.top + (this.head.radius*2) > player.top)))
+            if  ((((playerPos.left + playerSize.width) > (this.head.left + screenPos))
+                && ((playerPos.top + playerSize.height) > this.head.top)
+                && (((this.head.left + screenPos) + (this.head.radius*2)) > playerPos.left)
+                && ((this.head.top + (this.head.radius*2) > playerPos.top)))
                 ||
-                (( (player.left + playerSize.width) > (this.body.left + screenPos))
-                && ((player.top + playerSize.height) > this.body.top)
-                && (((this.body.left + screenPos) + (this.body.radius*2)) > player.left)
-                && (this.body.top + (this.body.radius*2) > player.top)))
+                (( (playerPos.left + playerSize.width) > (this.body.left + screenPos))
+                && ((playerPos.top + playerSize.height) > this.body.top)
+                && (((this.body.left + screenPos) + (this.body.radius*2)) > playerPos.left)
+                && (this.body.top + (this.body.radius*2) > playerPos.top)))
             {
                 collides = true
             }
