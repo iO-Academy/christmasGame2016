@@ -150,7 +150,7 @@ function animate2(level, gameWidth, speed) {
 /**
  * Stops animation of levels and removes them from #game.
  * Stops animation of the snowman avatar.
- * Calls gameStartHandler.
+ * Calls gameStartHandler().
  */
 function stopPlay() {
     $("#game .level").stop()
@@ -160,7 +160,7 @@ function stopPlay() {
 }
 
 /**
- * Sets an event listener for the keydown event, with gameStart as the callback method.
+ * Sets an event listener for the keydown event, with gameStart() as the callback method.
  */
 function gameStartHandler() {
     $(document).on('keydown', gameStart)
