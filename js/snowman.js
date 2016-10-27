@@ -1,10 +1,13 @@
-// handler to enable the stop function to work without affecting other keypresses and functions
+/**
+ * handler to enable the stop function to work without affecting other keypresses and functions
+ *
+ * param e is the keycode
+ */
 function snowmanHandler(e) {
-    // change to increase/decrease snowman movement spee.d Higher value will move faster, lower value slower
+    // change to increase/decrease snowman movement speed.
     var movementIncrement = 10
 
-    // limits the snowman's movement to within the game border. subtract 10 as default. 0 will be to edge of #game.
-    // Higher value will limit further into the #game div
+    // Minimum y value
     var gameHeight = $("#game").height() - 10
 
     // gets the height of the snowman img for movement limiting calculations
@@ -13,7 +16,7 @@ function snowmanHandler(e) {
     // the original position of the snowman
     var startingPositionY = $("#snowman").css("top")
 
-    // remove "px" from the top position to enable comparison to the snowman's current position
+    // get int from top value
     var positionNumber = startingPositionY.substring(0, (startingPositionY.length - 2))
 
     // down movement on DOWN ARROW press
@@ -29,25 +32,28 @@ function snowmanHandler(e) {
     }
 }
 
-// calls the snowman movement handler and changes the image to a moving gif
+/**
+ * Calls the snowman movement handler and changes the image to a moving gif.
+ */
 function moveSnowman() {
     $(document).keydown(snowmanHandler)
     $("#runningMan").attr("src", "assets/runningsnowman.gif")
 }
 
-// switches off the movement listener so the snowman won't move when the game ends
-// change the image to a static snowman
+/**
+ * Switches off the movement listener. Change the image to a static snowman
+ */
 function stopSnowman() {
     $(document).off("keydown", snowmanHandler)
     $("#runningMan").attr("src", "assets/standingsnowman.jpg")
 }
 
 
-// // this whole section is here for testing
-// // Z key will stop the snowman from moving
-// // X key will start the snowman moving
-// // NONE OF THE PREVIOUS CODE NEEDS TO BE IN THE DOCUMENT READY FUNCTION
-//
+// this whole section is here for testing
+// Z key will stop the snowman from moving
+// X key will start the snowman moving
+// NONE OF THE PREVIOUS CODE NEEDS TO BE IN THE DOCUMENT READY FUNCTION
+
 // $(function() {
 //
 //     function testPicture() {
@@ -55,10 +61,12 @@ function stopSnowman() {
 //         if (e.keyCode == 90) {
 //              stopSnowman()
 //         }
-//             if (e.keyCode == 88) {
-//                 moveSnowman()
-//             }
+//         if (e.keyCode == 88) {
+//             moveSnowman()
+//         }
 //     })
 //     }
+//
+//     testPicture()
 // })
 
