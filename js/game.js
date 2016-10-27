@@ -106,10 +106,11 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
  * level, a jQuery OBJECT whose property 0 contains the most recently loaded level (DOM OBJECT), that which is to be
  *      animated;
  * levWidth, the width of level (px);
- * dur1, the duration of animation that will ensure that its movement speed is the same as the value of the speed
- *      variable (ms);
+ * dur1, the duration of animation (ms);
  * wait, the delay put onto the animation of the first level after a speed increase.
  *
+ * Calculates the duration of animation that will ensure that its movement speed is the same as the current value of the
+ * speed variable.
  * Applies a delay to the first level after a speed increase to prevent the obstacles from catching up with those in the
  * previous, slower, level.
  * Animates level to transition leftwards from its current position (to the right of the game area) until its right edge
@@ -143,6 +144,23 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
     })
 }
 
+/**
+ * Sets:
+ * levWidth, the width of level (px);
+ * dur2, the duration of animation that will ensure that its movement speed is the same as the value of the speed
+ *      variable (ms).
+ *
+ * Calculates the duration of animation that will ensure that its movement speed is the same as the current value of the
+ * speed variable.
+ * Animates level to transition leftwards from its current position (right-aligned with the game area) until its right edge
+ * is aligned with the left edge of the game area (it's out of the play area).
+ * Removes the animated level from #game.
+ *
+ * @param level OBJECT a jQuery OBJECT whose property 0 contains the level (DOM OBJECT) that has just been passed through
+ * animate1 and is to be animated here in animate2
+ * @param gameWidth NUMBER the width of the game area inside the white frame (px)
+ * @param speed NUMBER the current speed of level movement (px/ms)
+ */
 function animate2(level, gameWidth, speed) {
     var
         levWidth = level.width(),
