@@ -114,7 +114,11 @@ function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, in
             left: - (levWidth - canvasWidth)
         },
         {
-            step: function() {
+            step: function(screenPos) {
+                if(collides($player.position(), playerSize, objArray, screenPos)){
+                    $('#game .level').stop()
+                    console.log("hit")
+                }
             },
             duration: dur1,
             easing: "linear",
