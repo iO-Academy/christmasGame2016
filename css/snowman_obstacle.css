@@ -1,7 +1,7 @@
 .snowman {
     width: 250px;
     height: 360px;
-    position: relative;
+    position: absolute;
 }
 
 .snowman .head {
