@@ -3,6 +3,7 @@
     top: 100%;
     width: 100%;
     height: 100%;
+    display: none;
 }
 
 .level1 {
@@ -15,6 +16,14 @@
 
 .level3 {
     width: 1650px;
+}
+
+.level4 {
+    width: 1800px;
+}
+
+.level5 {
+    width: 2600px;
 }
 
 .level {
