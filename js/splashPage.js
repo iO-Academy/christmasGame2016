@@ -16,7 +16,10 @@ $(function() {
                     if (!data.success) {
                         $("#error").text(ajaxErrorMessage)
                     } else {
-                        $('#canvas').load("game.html").addClass("game")
+                        $('#canvas').load("game.html", function() {
+                            $(this).addClass("game")
+                            gameStartHandler()
+                        })
                     }
                 },
                 error: function() {
