@@ -43,30 +43,50 @@ function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncremente
 }
 
 function animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels) {
+
     var level = $loadedLevel.last(),
         levWidth = level.width(),
         dur1 = levWidth / speed
+
     if (counter % totalLevels == 0) {
         var wait = (dur1/8)
         level.delay(wait)
     }
-            level.animate({
-        left: - (levWidth - canvasWidth)
-    }, dur1, "linear", function() {
+
+    level.animate(
+        {
+            left: - (levWidth - canvasWidth)
+        },
+        {
+            step:function (){
+            },
+            duration: dur1,
+            easing: "linear",
+            complete: function() {
                 animate2(level, canvasWidth, speed)
-       gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
-    })
+                gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+            }
+        })
 }
 
 function animate2(level, canvasWidth, speed) {
-    var
-        levWidth = level.width(),
-    dur2 = canvasWidth / speed
-    level.animate({
-        left: - levWidth
-    }, dur2, "linear", function() {
-        level.remove()
-    })
+
+    var levWidth = level.width(),
+        dur2 = canvasWidth / speed
+
+    level.animate(
+        {
+            left: - levWidth
+        },
+        {
+            step:function (){
+            },
+            duration: dur2,
+            easing: "linear",
+            complete: function() {
+                level.remove()
+            }
+        })
 }
 
 function stopPlay() {
