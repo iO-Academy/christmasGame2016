@@ -138,7 +138,11 @@ function animate2(level, canvasWidth, speed) {
             left: - levWidth
         },
         {
-            step: function() {
+            step: function(screenPos) {
+                if(collides($player.position(), playerSize, objArray, screenPos)){
+                    $('#game .level').stop()
+                    console.log("hit")
+                }
             },
             duration: dur2,
             easing: "linear",
