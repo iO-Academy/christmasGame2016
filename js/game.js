@@ -1,4 +1,4 @@
-var objArray = []
+window.objArray = []
 var $player
 var playerSize
 
@@ -33,17 +33,17 @@ function gameStartHandler() {
  * @param e OBJECT keydown event
  */
 function gameStart(e) {
-    var initialSpeed = 0.09, //the speed of level movement when the game begins (px/ms)
-        speed = initialSpeed, //the current speed of level movement (px/ms)
-        increaseFactor = 1.1, //the amount speed is multiplied by on every increase
-        increaseLimit = 7, //the number of times the speed will increase before reaching the maximum
-        counter = 0, //indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
-                     //through the game area
-
-        maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
-                                                                          //(px/ms)
     if (e.keyCode == 32) { //checking if the key pressed was the space bar
-        $(document).off("keydown", gameStart)
+        var initialSpeed = 0.09, //the speed of level movement when the game begins (px/ms)
+            speed = initialSpeed, //the current speed of level movement (px/ms)
+            increaseFactor = 1.1, //the amount speed is multiplied by on every increase
+            increaseLimit = 7, //the number of times the speed will increase before reaching the maximum
+            counter = 0, //indicates the number of times gameLoop() has been executed, i.e. how many levels have passed
+                         //through the game area
+            maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
+                                                                              //(px/ms)
+        objArray = []
+        $(document).off("keydown")
         moveSnowman()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
@@ -99,9 +99,10 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
  * currently loaded into #game
  */
 function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
-    var rand = Math.ceil(Math.random() * totalLevels), //a random integer between 1 and totalLevels (inclusive),
+    var rand = Math.ceil(Math.random() * totalLevels) //a random integer between 1 and totalLevels (inclusive),
         //indicating the next level to be loaded
-        $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
+
+        var $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
                                                              //be loaded into #game, determined by a CSS selector
                                                              //containing rand
         $loadedLevel, //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently
@@ -166,6 +167,8 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
  * During the animation, check for obstacle collision and if collides stop the animation.
  * On completion of the animation, animate2() and gameLoop() are called.
  *
+ * COMMENT: currentObjArray created so screenPos is only applied to the obstacles within that animation
+ *
  * @param $loadedLevel OBJECT a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are
  * currently loaded into #game
  * @param gameWidth NUMBER the width of the game area inside the white frame (px)
@@ -195,7 +198,11 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         },
         {
             step: function(screenPos) {
-                var currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
+                var currentObjArray = objArray
+
+                if ($loadedLevel.length != 1) { // if its not the only level, remove the first level obs
+                    currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
+                }
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
@@ -217,6 +224,8 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
  * During the animation, check for obstacle collision and if collides stop the animation.
  * On completeion of the animation, removes the animated level from #game and removes unloaded objects from objArray.
  *
+ * COMMENT: currentObjArray created so screenPos is only applied to the obstacles within that animation
+ *
  * @param level OBJECT a jQuery OBJECT whose property 0 contains the level (DOM OBJECT) that has just been passed through
  * animate1 and is to be animated here in animate2
  * @param gameWidth NUMBER the width of the game area inside the white frame (px)
@@ -232,6 +241,7 @@ function animate2(level, gameWidth, speed) {
         },
         {
             step: function(screenPos) {
+                // remove the second level obs so it only detects on first level
                 var currentObjArray = objArray.slice(0, level.children().length)
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
@@ -269,8 +279,6 @@ function stopPlay() {
  * @returns BOOLEAN is true if collides
  */
 function collides(playerPos, playerSize, obsArray, screenPos) {
-
-    console.log(screenPos)
 
     var collides = false
 
