@@ -24,20 +24,17 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
 
     counter++
     $loadedLevel = load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer)
-
     animate1($loadedLevel, canvasWidth, speed, maxSpeed, increaseFactor, initialSpeed, counter, totalLevels)
 }
 
 function load(canvasWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels),
-        selectedLevel = "#levelContainer .level" + rand,
-        $selectedLevel = $(selectedLevel),
+        $selectedLevel = $("#levelContainer .level" + rand),
         $loadedLevel
+
     $selectedLevel.clone().appendTo("#game")
     $loadedLevel = $("#game .level")
-    $loadedLevel.last().css(
-        "left", canvasWidth + 150
-    )
+    $loadedLevel.last().css("left", canvasWidth + 150)
     return $loadedLevel
 }
 
