@@ -45,9 +45,6 @@ form input {
 .snowball.medium {
     width: 30px;
     height: 30px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    position: absolute;
     top: 50px;
     left: 500px;
     -webkit-animation: flickerAnimation 2s infinite;
@@ -59,42 +56,33 @@ form input {
 .snowball.extraSmall {
     width: 10px;
     height: 10px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    position: absolute;
     top: 50px;
     left: 600px;
-    -webkit-animation: flickerAnimation 1s infinite;
-    -moz-animation: flickerAnimation 1s infinite;
-    -o-animation: flickerAnimation 1s infinite;
+    -webkit-animation: flickerAnimation 3s infinite;
+    -moz-animation: flickerAnimation 3s infinite;
+    -o-animation: flickerAnimation 3s infinite;
     animation: flickerAnimation 3s infinite;
 }
 
 .snowball.small {
     width: 20px;
     height: 20px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    position: absolute;
     top: 50px;
     left: 700px;
-    -webkit-animation: flickerAnimation 3s infinite;
-    -moz-animation: flickerAnimation 3s infinite;
-    -o-animation: flickerAnimation 3s infinite;
+    -webkit-animation: flickerAnimation 4s infinite;
+    -moz-animation: flickerAnimation 4s infinite;
+    -o-animation: flickerAnimation 4s infinite;
     animation: flickerAnimation 4s infinite;
 }
 
 .snowball.big {
     width: 40px;
     height: 40px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    position: absolute;
     top: 50px;
     left: 800px;
-    -webkit-animation: flickerAnimation 4s infinite;
-    -moz-animation: flickerAnimation 4s infinite;
-    -o-animation: flickerAnimation 4s infinite;
+    -webkit-animation: flickerAnimation 5s infinite;
+    -moz-animation: flickerAnimation 5s infinite;
+    -o-animation: flickerAnimation 5s infinite;
     animation: flickerAnimation 5s infinite;
 }
 
@@ -217,10 +205,14 @@ form input {
     100% { opacity:0.9; }
 }
 .snowball {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
     -webkit-animation: flickerAnimation 2s infinite;
     -moz-animation: flickerAnimation 2s infinite;
     -o-animation: flickerAnimation 2s infinite;
     animation: flickerAnimation 2s infinite;
     box-shadow: 0 0 35px #ffffff;
+
 }
 
