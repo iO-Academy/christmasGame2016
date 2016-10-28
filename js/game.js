@@ -2,6 +2,30 @@ window.objArray = []
 var $player
 var playerSize
 
+function savePlay(uid, time, attempt) {
+    $.ajax({
+        method:"post",
+        url:"api/",
+        data:{
+            "action": "saveAttempt",
+            "uid":uid,
+            "time":time,
+            "attempt":attempt
+        },
+        success: function(data) {
+            console.log(data)
+            if (!data.success) {
+                // @todo show an error in the die screen
+            }
+        },
+        error: function(data) {
+            // @todo show an error in the die screen
+            console.log(data)
+        }
+    })
+}
+
+
 /**
 * Sets the player variables.
 * is called when game page is loaded.
@@ -263,6 +287,7 @@ function animate2(level, gameWidth, speed) {
  */
 function stopPlay() {
     $("#game .level").stop().remove()
+
     stopSnowman()
     gameStartHandler()
 }
