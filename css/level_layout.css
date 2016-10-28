@@ -1,0 +1,250 @@
+#levelContainer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.level1 {
+    width: 1300px;
+}
+
+.level2 {
+    width: 1200px;
+}
+
+.level3 {
+    width: 1650px;
+}
+
+.level4 {
+    width: 1800px;
+}
+
+.level5 {
+    width: 2600px;
+}
+
+.level {
+    position: absolute;
+    min-width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.level img,
+.level > div {
+    position: absolute;
+}
+
+.level .top {
+    top: 0;
+}
+
+.level .bottom {
+    bottom: 0;
+}
+
+.level .rotate {
+    -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
+    -moz-transform: rotate(180deg);        /* FF */
+    -o-transform: rotate(180deg);          /* Opera */
+    -ms-transform: rotate(180deg);         /* IE9 */
+    transform: rotate(180deg);
+    /* IE8 and below */
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1, M12=0, M21=0, M22=-1, DX=0, DY=0, SizingMethod='auto expand');
+}
+
+.level1 .img1 {
+    height: 250px;
+    bottom: 0;
+    left: 20px;
+}
+
+.level1 .img2 {
+    height: 100px;
+    bottom: 250px;
+    left: 70px;
+}
+
+.level1 .img3 {
+    bottom: 0;
+    left: 500px;
+    height: 370px;
+}
+
+.level1 .img4 {
+    bottom: 0;
+    left: 250px;
+    height: 185px;
+}
+
+.level1 .img5 {
+    left: 950px;
+    height: 300px;
+    top: 60px;
+}
+
+.level1 .img6 {
+    height: 185px;
+    left: 250px;
+    top: 0;
+    transform: rotate(180deg);
+}
+
+.level2 .img1 {
+    width: 150px;
+    left: 10px;
+}
+
+.level2 .img2 {
+    width: 200px;
+    left: 150px;
+}
+
+.level2 .img3 {
+    width: 50px;
+    bottom: 100px;
+    left: 200px;
+}
+
+.level2 .img4 {
+    width: 200px;
+    left: 350px;
+}
+
+.level2 .img5 {
+    width: 200px;
+    left: 650px;
+}
+
+.level2 .img6 {
+    width: 120px;
+    left: 900px;
+}
+
+.level3 .img1,
+.level3 .img2 {
+    left: 20px;
+    height: 185px;
+}
+
+.level3 .img3 {
+    left: 450px;
+    height: 105px;
+}
+
+.level3 .img4 {
+    left: 450px;
+    height: 265px;
+}
+
+.level3 .img5 {
+    left: 900px;
+    height: 265px;
+}
+
+.level3 .img6 {
+    left: 900px;
+    height: 105px;
+}
+
+.level3 .img7,
+.level3 .img8 {
+    left: 1350px;
+    height: 185px;
+}
+
+.level4 .img1 {
+     left: 0;
+     height: 370px;
+ }
+
+.level4 .img2 {
+    left: 430px;
+    top: 130px;
+    height: 220px;
+    width: 153px;
+}
+
+.level4 .img3 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img4 {
+    left: 720px;
+    height: 180px;
+}
+
+.level4 .img5 {
+    left: 1090px;
+    top: 120px;
+    height: 180px;
+}
+
+.level4 .img6 {
+    left: 1490px;
+    height: 340px;
+}
+
+.level5 .img1 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    bottom: -110px;
+}
+
+.level5 .img2 {
+    left: 0;
+    height: 300px;
+    width: 208px;
+    top: -110px;
+}
+
+.level5 .img3 {
+    left: 490px;
+    height: 350px;
+    width: 243px;
+    bottom: -20px;
+}
+
+.level5 .img4 {
+    left: 960px;
+    height: 220px;
+    width: 153px;
+    top: 100px;
+}
+
+.level5 .img5 {
+    left: 1430px;
+    height: 180px;
+    width: 125px;
+    top: -110px;
+}
+
+.level5 .img6 {
+    left: 1385px;
+    height: 320px;
+    width: 222px;
+    bottom: -20px;
+}
+
+.level5 .img7 {
+    left: 1950px;
+    height: 270px;
+    width: 187px;
+    top: -20px;
+}
+
+.level5 .img8 {
+    left: 2200px;
+    height: 250px;
+    width: 174px;
+    bottom: -10px;
+}
+
+
+
+
