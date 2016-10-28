@@ -41,3 +41,141 @@ form input {
     height: 30px;
     color: #ec8024;
 }
+
+.snowball.medium {
+    width: 30px;
+    height: 30px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 500px;
+}
+
+.snowball.extraSmall {
+    width: 10px;
+    height: 10px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 600px;
+}
+
+.snowball.small {
+    width: 20px;
+    height: 20px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 700px;
+}
+
+.snowball.big {
+    width: 40px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 800px;
+}
+
+#m1 {
+    top: 344px;
+    left: 100px;
+}
+
+#m2 {
+    top: 588px;
+    left: 750px;
+}
+#m3 {
+    top: 40px;
+    left: 330px;
+}
+#m4 {
+    top: 410px;
+    left: 520px;
+}
+#m5 {
+    top: 530px;
+    left: 240px;
+}
+
+#b1 {
+    top: 500px;
+    left: 390px;
+}
+
+#b2 {
+    top: 40px;
+    left: 810px;
+}
+
+#b3 {
+    top: 120px;
+    left: 90px;
+}
+
+#b4 {
+    top: 60px;
+    left: 540px;
+}
+
+#b5 {
+    top: 330px;
+    left: 310px;
+}
+
+#s1 {
+    top: 520px;
+    left: 40px;
+}
+
+#s2 {
+    top: 180px;
+    left: 780px;
+}
+
+#s3 {
+    top: 120px;
+    left: 270px;
+}
+
+#s4 {
+    top: 1700px;
+    left: 450px;
+}
+
+#s5 {
+    top: 20px;
+    left: 20px;
+}
+
+#es1 {
+    top: 430px;
+    left: 250px;
+}
+
+#es2 {
+    top: 290px;
+    left: 840px;
+}
+
+#es3 {
+    top: 260px;
+    left: 500px;
+}
+
+#es4 {
+    top: 540px;
+    left: 5800px;
+}
+
+#es5 {
+    top: 500px;
+    left: 820px;
+}
+
