@@ -49,7 +49,7 @@ function startTimer() {
         // add padding to minutes and seconds to return two digits for each
         var paddedMinutes = leftPad(gameMinutes, padLength)
         var paddedSeconds = leftPad(gameSeconds, padLength)
-
+        
         // send times with leading zeroes out to the game screen every second
         $("#timer").html(paddedMinutes + ":" + paddedSeconds)
     }, 1000)

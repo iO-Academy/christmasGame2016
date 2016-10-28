@@ -27,6 +27,11 @@ form input {
     display: block;
 }
 
+#error {
+    height: 30px;
+    color: #ec8024;
+}
+
 #intro {
     position: absolute;
     width: 250px;
@@ -47,6 +52,27 @@ form input {
     height: 490px;
     overflow: hidden;
     position: relative;
+}
+
+.notificationPopUp {
+    width: 850px;
+    height: 470px;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    background-color: #FFFFFF;
+    display: none;
+    box-shadow: 0 0 20px -2px rgba(255,255,255,0.94);
+}
+
+#hiddenPopups {
+    display: none;
+}
+
+.dieScreen {
+    font-size: 170%;
+    text-align: center;
+    padding-top: 60px;
 }
 
 footer {

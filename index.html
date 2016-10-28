@@ -10,9 +10,12 @@
     <link rel="stylesheet" type="text/css" href="css/snowman.css">
     <link rel="stylesheet" type="text/css" href="css/snowman_obstacle.css">
     <script src="js/jquery.js"></script>
+    <script src="js/global.js"></script>
     <script src="js/game.js"></script>
     <script src="js/splashPage.js"></script>
     <script src="js/snowman.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/timer.js"></script>
 </head>
 <body>
     <div id="canvas">
@@ -26,10 +29,19 @@
             <button class="large" type="submit">PLAY</button>
         </form>
         <div id="intro">
-            <img src="assets/snowman.png">
+            <img src="assets/snowman.png" alt="snowman">
             <p>Mayden Academy Christmas Game<br>2016</p>
         </div>
     </div>
+    <div id="hiddenPopups">
+        <div class="dieScreen">
+            <h2>Uh-oh, you ran into an obstacle!</h2>
+            <p>Your time was <span class="insertTime"></span>.</p>
+            <p>Your time has been recorded successfully<br>Click below to try again.</p>
+            <button class="large retry" type="button">RETRY</button>
+        </div>
+    </div>
+
 
 
 </body>
