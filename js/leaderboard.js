@@ -32,7 +32,11 @@ function leaderBoardGenerate() {
                 })
                 openPopup($("#leaderScreen"))
                 $("#leaderScreen").append('<button class="large wideButton" id="close" type="button">Close</button>')
-                $("#close").click(closePopup)
+                $("#close").click(function() {
+                    closePopup()
+                    $("#timer").html("00:00")
+                    gameStartHandler()
+                })
             }
         },
         error: function(data) {
