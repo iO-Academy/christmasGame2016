@@ -5,7 +5,7 @@
     position: absolute;
     top: 210px;
     left: 70px;
-    z-index: 1000;
+    z-index: 1;
 }
 
 #snowman img {
