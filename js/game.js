@@ -185,11 +185,16 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                                      //(DOM OBJECT), that which is to be animated
         levWidth = level.width(), //the width of level (px)
         dur1 = levWidth / speed, //the duration of animation (ms)
-        divisor = 8 //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
+        divisor = 8, //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
+        currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
 
     if (counter % totalLevels == 0) {
         var wait = (dur1/divisor) //the delay put onto the animation of the first level after a speed increase
         level.delay(wait)
+    }
+
+    if ($loadedLevel.length == 1) { // if its the first level, use first set of obstacles
+        currentObjArray = objArray
     }
 
     level.animate(
@@ -198,11 +203,6 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         },
         {
             step: function(screenPos) {
-                var currentObjArray = objArray
-
-                if ($loadedLevel.length != 1) { // if its not the only level, remove the first level obs
-                    currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
-                }
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
@@ -235,14 +235,15 @@ function animate2(level, gameWidth, speed) {
     var levWidth = level.width(), //the width of level (px)
         dur2 = gameWidth / speed //the duration of animation (ms)
 
+    // remove the second level obs so it only detects on first level
+    var currentObjArray = objArray.slice(0, level.children().length)
+
     level.animate(
         {
             left: - levWidth
         },
         {
             step: function(screenPos) {
-                // remove the second level obs so it only detects on first level
-                var currentObjArray = objArray.slice(0, level.children().length)
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
