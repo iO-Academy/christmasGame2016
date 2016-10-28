@@ -19,6 +19,7 @@ $(function() {
                         $('#canvas').load("game.html", function() {
                             $(this).addClass("game")
                             init()
+                            $("#timer").html("00:00")
                             gameStartHandler()
                             instructionsHandler()
                         })
