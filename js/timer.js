@@ -37,8 +37,8 @@ function stopTimer() {
 function startTimer() {
     var i = 0
     padLength = "00"
-    paddedMinutes = 00
-    paddedSeconds = 00
+    paddedMinutes = "00"
+    paddedSeconds = "00"
     $("#timer").html(paddedMinutes + ":" + paddedSeconds)
 
     timer = setInterval(function () {
@@ -63,7 +63,7 @@ function startTimer() {
 
 function resetTimer() {
     i = 00
-    paddedMinutes = 0
-    paddedSeconds = 0
+    paddedMinutes = "00"
+    paddedSeconds = "00"
 }
 

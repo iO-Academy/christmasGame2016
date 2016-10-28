@@ -14,6 +14,7 @@ function openPopup($element) {
         $("#canvas").prepend('<div class="notificationPopUp"></div>')
     }
     $(".notificationPopUp").html(elementHtml)
+    $(".notificationPopUp .insertTime").html(paddedMinutes + ":" + paddedSeconds)
     $(".notificationPopUp").fadeIn(350)
 }
 
