@@ -203,9 +203,16 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                 if ($loadedLevel.length != 1) { // if its not the only level, remove the first level obs
                     currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
                 }
-                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
-                    stopPlay()
+
+                console.log($player)
+
+                if ($player.touches('white')) {
+                    console.log('hit')
                 }
+
+                //if(collides($player.position(), playerSize, currentObjArray, screenPos)){
+                //    stopPlay()
+                //}
             },
             duration: dur1,
             easing: "linear",
@@ -243,9 +250,14 @@ function animate2(level, gameWidth, speed) {
             step: function(screenPos) {
                 // remove the second level obs so it only detects on first level
                 var currentObjArray = objArray.slice(0, level.children().length)
-                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
-                    stopPlay()
+
+                if ($player.touches('white')) {
+                    console.log('hit')
                 }
+
+                //if(collides($player.position(), playerSize, currentObjArray, screenPos)){
+                //    stopPlay()
+                //}
             },
             duration: dur2,
             easing: "linear",
