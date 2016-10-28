@@ -58,24 +58,23 @@
 
 .level1 .img1 {
     height: 250px;
-    bottom: 0;
+    width: 174px;
     left: 20px;
 }
 
 .level1 .img2 {
     height: 100px;
+    width: 69.5px;
     bottom: 250px;
     left: 70px;
 }
 
 .level1 .img3 {
-    bottom: 0;
     left: 500px;
     height: 370px;
 }
 
 .level1 .img4 {
-    bottom: 0;
     left: 250px;
     height: 185px;
 }
@@ -89,7 +88,6 @@
 .level1 .img6 {
     height: 185px;
     left: 250px;
-    top: 0;
     transform: rotate(180deg);
 }
 
@@ -104,6 +102,7 @@
 }
 
 .level2 .img3 {
+    height: 72px;
     width: 50px;
     bottom: 100px;
     left: 200px;
@@ -116,6 +115,7 @@
 
 .level2 .img5 {
     width: 200px;
+    height: 288px;
     left: 650px;
 }
 

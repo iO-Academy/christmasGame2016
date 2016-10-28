@@ -18,6 +18,7 @@ $(function() {
                     } else {
                         $('#canvas').load("game.html", function() {
                             $(this).addClass("game")
+                            init()
                             gameStartHandler()
                         })
                     }
