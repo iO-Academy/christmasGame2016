@@ -40,24 +40,19 @@ function closePopup(callback) {
 /*
  * Create click event handlers for how to play button
  */
-
     function instructionsHandler() {
-        $("#rules").on("click", function () {
-            console.log("sausages")
+        $("body").one("click", "footer button", function () {
             openPopup($("#rulesScreen"))
-            $(this).attr("id", "closeRules")
-            $("#retryText").text("Close")
+            $("footer button").attr("id", "closeRules").text("Close")
 
             // create close event handler
-            $("#closeRules").one("click", function () {
+            $("body").one("click", "#closeRules", function () {
+                $("footer button").text("How To Play")
                 closePopup()
-                $(this).attr("id", "rules")
-                $("#retryText").text("How To Play")
                 instructionsHandler()
             })
         })
     }
-
 
 /*
  * Create retry button event handler

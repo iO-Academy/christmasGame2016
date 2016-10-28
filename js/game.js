@@ -43,7 +43,6 @@ function init() {
         width: $player.width(),
         height: $player.height()
     }
-
 }
 
 
