@@ -16,6 +16,7 @@
     <script src="js/snowman.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/timer.js"></script>
+    <script src="js/leaderboard.js"></script>
 </head>
 <body>
     <div id="canvas">
@@ -26,7 +27,10 @@
             <label>Email *</label>
             <input name="email" id="email">
             <p id="error"></p>
-            <button class="large" type="submit">PLAY</button>
+            <button class="large" id="play" type="submit">PLAY</button>
+            <div>
+                <button class="leaderboard" type="button">Leaderboard</button>
+            </div>
         </form>
         <div id="intro">
             <img src="assets/snowman.png" alt="snowman">
@@ -34,11 +38,18 @@
         </div>
     </div>
     <div id="hiddenPopups">
+        <div id="leaderScreen">
+            <img src="assets/tree.jpg" class="right" alt="christmas tree" id="leaderTree">
+            <h1>Top Five Players</h1>
+        </div>
         <div class="dieScreen">
             <h2>Uh-oh, you ran into an obstacle!</h2>
             <p>Your time was <span class="insertTime"></span>.</p>
             <p>Your time has been recorded successfully<br>Click below to try again.</p>
             <button class="large retry" type="button">RETRY</button>
+            <div>
+                <button class="leaderboard" type="button">Leaderboard</button>
+            </div>
         </div>
         <div id="rulesScreen">
             <h2>How To Play</h2>
@@ -67,9 +78,5 @@
             <img src="assets/tree.jpg" alt="christmas_tree" id="tree">
         </div>
     </div>
-    </div>
-
-
-
 </body>
 </html>

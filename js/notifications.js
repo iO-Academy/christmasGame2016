@@ -8,7 +8,11 @@
 */
 function openPopup($element) {
     var elementHtml = $element.clone(true, true).wrap("<div/>").parent().html()
-    $("#game").prepend('<div class="notificationPopUp"></div>')
+    if ($("#game").length > 0) {
+        $("#game").prepend('<div class="notificationPopUp"></div>')
+    } else {
+        $("#canvas").prepend('<div class="notificationPopUp"></div>')
+    }
     $(".notificationPopUp").html(elementHtml)
     $(".notificationPopUp").fadeIn(350)
 }
@@ -17,10 +21,19 @@ function openPopup($element) {
  * Clear cloned content
  * Hide popup
  */
-function closePopup() {
-    $(".notificationPopUp").fadeOut(function() {
-        $(this).remove()
-    })
+function closePopup(callback) {
+    if($(".notificationPopUp").length > 0) {
+        $(".notificationPopUp").fadeOut(function () {
+            $(".notificationPopUp, table").remove()
+            if (typeof callback == "function") {
+                callback()
+            }
+        })
+    } else {
+        if (typeof callback == "function") {
+            callback()
+        }
+    }
 }
 
 /*
@@ -53,5 +66,3 @@ $(function() {
     })
     instructionsHandler()
 })
-
-

@@ -18,3 +18,16 @@ button.large {
 button span {
     color: #FFFFFF;
 }
+
+#close {
+    margin-left: 10px;
+}
+
+#game #leaderboard {
+    width: 198px;
+}
+
+#leaderboard {
+    width: 167px;
+}
+
