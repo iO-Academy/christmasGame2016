@@ -102,7 +102,7 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
     var rand = Math.ceil(Math.random() * totalLevels) //a random integer between 1 and totalLevels (inclusive),
         //indicating the next level to be loaded
 
-        var $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
+        var $selectedLevel = $("#levelContainer .level" + 5), //a jQuery OBJECT containing the next level (DOM OBJECT) to
                                                              //be loaded into #game, determined by a CSS selector
                                                              //containing rand
         $loadedLevel, //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently

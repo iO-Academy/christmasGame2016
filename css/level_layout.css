@@ -19,11 +19,11 @@
 }
 
 .level4 {
-    width: 1800px;
+    width: 2100px;
 }
 
 .level5 {
-    width: 2600px;
+    width: 2650px;
 }
 
 .level {
@@ -169,23 +169,23 @@
 }
 
 .level4 .img3 {
-    left: 720px;
+    left: 820px;
     height: 180px;
 }
 
 .level4 .img4 {
-    left: 720px;
+    left: 820px;
     height: 180px;
 }
 
 .level4 .img5 {
-    left: 1090px;
+    left: 1190px;
     top: 120px;
     height: 180px;
 }
 
 .level4 .img6 {
-    left: 1490px;
+    left: 1630px;
     height: 340px;
 }
 
@@ -239,10 +239,10 @@
 }
 
 .level5 .img8 {
-    left: 2200px;
+    left: 2250px;
     height: 250px;
     width: 174px;
-    bottom: -10px;
+    bottom: -20px;
 }
 
 
