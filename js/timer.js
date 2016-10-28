@@ -1,6 +1,6 @@
 // set global variable for use in functions
 var timer
-var padLength
+var gamePlaySeconds
 var paddedMinutes
 var paddedSeconds
 
@@ -35,8 +35,8 @@ function stopTimer() {
  * Starts the timer
  */
 function startTimer() {
-    var i = 0
-    padLength = "00"
+    gamePlaySeconds = 0
+    var padLength = "00"
     paddedMinutes = "00"
     paddedSeconds = "00"
     $("#timer").html(paddedMinutes + ":" + paddedSeconds)
@@ -44,13 +44,13 @@ function startTimer() {
     timer = setInterval(function () {
 
         // increase the counter by one on each 1000ms interval
-        i++
+        gamePlaySeconds++
 
         // turn game minutes to a string for correct display
-        var gameMinutes = getGameMinutes(i) + ''
+        var gameMinutes = getGameMinutes(gamePlaySeconds) + ''
 
         // turn game seconds to a string for correct display
-        var gameSeconds = getGameSeconds(i) + ''
+        var gameSeconds = getGameSeconds(gamePlaySeconds) + ''
 
         // add padding to minutes and seconds to return two digits for each
         paddedMinutes = leftPad(gameMinutes, padLength)
@@ -62,7 +62,7 @@ function startTimer() {
 }
 
 function resetTimer() {
-    i = 00
+    gamePlaySeconds = 00
     paddedMinutes = "00"
     paddedSeconds = "00"
 }

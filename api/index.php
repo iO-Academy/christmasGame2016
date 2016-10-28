@@ -30,7 +30,7 @@ if (!empty($_POST['action'])) {
                             'success' => true,
                             'message' => 'User account exists',
                             'data' => array(
-                                'curAttempt' => $attempts,
+                                'curAttempt' => (int)$attempts,
                                 'uid' => $id
                             )
                         );
