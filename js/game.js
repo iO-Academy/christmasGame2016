@@ -185,11 +185,16 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                                      //(DOM OBJECT), that which is to be animated
         levWidth = level.width(), //the width of level (px)
         dur1 = levWidth / speed, //the duration of animation (ms)
-        divisor = 8 //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
+        divisor = 8, //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
+        currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
 
     if (counter % totalLevels == 0) {
         var wait = (dur1/divisor) //the delay put onto the animation of the first level after a speed increase
         level.delay(wait)
+    }
+
+    if ($loadedLevel.length == 1) { // if its the first level, use first set of obstacles
+        currentObjArray = objArray
     }
 
     level.animate(
@@ -198,11 +203,6 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         },
         {
             step: function(screenPos) {
-                var currentObjArray = objArray
-
-                if ($loadedLevel.length != 1) { // if its not the only level, remove the first level obs
-                    currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
-                }
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
@@ -210,8 +210,10 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
             duration: dur1,
             easing: "linear",
             complete: function() {
-                animate2(level, gameWidth, speed)
-                gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+                setTimeout(function() {     //fixing the function stack call order
+                    animate2(level, gameWidth, speed)
+                    gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+                }, 0)
             }
         })
 }
@@ -235,14 +237,15 @@ function animate2(level, gameWidth, speed) {
     var levWidth = level.width(), //the width of level (px)
         dur2 = gameWidth / speed //the duration of animation (ms)
 
+    // remove the second level obs so it only detects on first level
+    var currentObjArray = objArray.slice(0, level.children().length)
+
     level.animate(
         {
             left: - levWidth
         },
         {
             step: function(screenPos) {
-                // remove the second level obs so it only detects on first level
-                var currentObjArray = objArray.slice(0, level.children().length)
                 if(collides($player.position(), playerSize, currentObjArray, screenPos)){
                     stopPlay()
                 }
@@ -282,26 +285,28 @@ function collides(playerPos, playerSize, obsArray, screenPos) {
 
     var collides = false
 
+    playerPos.top = playerPos.top - 5 // remove the border of the #game div
+
     $.each(obsArray, function(i) {
         if(!this.isSnowman) {
             if (((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
-                ((playerPos.top + playerSize.height) > this.top) &&
+                (((playerPos.top) + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > playerPos.left) &&
-                ((this.top + this.height) > playerPos.top))
+                ((this.top + this.height) > (playerPos.top)))
             {
                 collides = true
             }
         }
         else {
             if  ((((playerPos.left + playerSize.width) > (this.head.left + screenPos))
-                && ((playerPos.top + playerSize.height) > this.head.top)
+                && (((playerPos.top) + playerSize.height) > this.head.top)
                 && (((this.head.left + screenPos) + (this.head.radius*2)) > playerPos.left)
-                && ((this.head.top + (this.head.radius*2) > playerPos.top)))
+                && ((this.head.top + (this.head.radius*2) > (playerPos.top))))
                 ||
                 (( (playerPos.left + playerSize.width) > (this.body.left + screenPos))
-                && ((playerPos.top + playerSize.height) > this.body.top)
+                && (((playerPos.top) + playerSize.height) > this.body.top)
                 && (((this.body.left + screenPos) + (this.body.radius*2)) > playerPos.left)
-                && (this.body.top + (this.body.radius*2) > playerPos.top)))
+                && (this.body.top + (this.body.radius*2) > (playerPos.top))))
             {
                 collides = true
             }
