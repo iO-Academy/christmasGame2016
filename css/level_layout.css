@@ -7,11 +7,11 @@
 }
 
 .level1 {
-    width: 1300px;
+    width: 2000px;
 }
 
 .level2 {
-    width: 1200px;
+    width: 1500px;
 }
 
 .level3 {
@@ -59,35 +59,35 @@
 .level1 .img1 {
     height: 250px;
     width: 174px;
-    left: 20px;
+    left: 0;
 }
 
 .level1 .img2 {
     height: 100px;
     width: 69.5px;
     bottom: 250px;
-    left: 70px;
+    left: 50px;
 }
 
 .level1 .img3 {
-    left: 500px;
+    left: 1100px;
     height: 370px;
 }
 
 .level1 .img4 {
-    left: 250px;
+    left: 500px;
     height: 185px;
 }
 
 .level1 .img5 {
-    left: 950px;
+    left: 1688px;
     height: 300px;
-    top: 60px;
+    top: 49px;
 }
 
 .level1 .img6 {
     height: 185px;
-    left: 250px;
+    left: 500px;
     transform: rotate(180deg);
 }
 
@@ -104,7 +104,7 @@
 .level2 .img3 {
     height: 72px;
     width: 50px;
-    bottom: 100px;
+    bottom: 125px;
     left: 200px;
 }
 
@@ -116,12 +116,12 @@
 .level2 .img5 {
     width: 200px;
     height: 288px;
-    left: 650px;
+    left: 750px;
 }
 
 .level2 .img6 {
     width: 120px;
-    left: 900px;
+    left: 1100px;
 }
 
 .level3 .img1,
