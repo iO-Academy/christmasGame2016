@@ -14,6 +14,7 @@ function openPopup($element) {
         $("#canvas").prepend('<div class="notificationPopUp"></div>')
     }
     $(".notificationPopUp").html(elementHtml)
+    $(".notificationPopUp .insertTime").html(paddedMinutes + ":" + paddedSeconds)
     $(".notificationPopUp").fadeIn(350)
 }
 
@@ -39,21 +40,19 @@ function closePopup(callback) {
 /*
  * Create click event handlers for how to play button
  */
-function instructionsHandler() {
-    $("#rules").one("click", function () {
-        openPopup($("#rulesScreen"))
-        $(this).attr("id", "closeRules")
-        $("#retryText").text("Close")
+    function instructionsHandler() {
+        $("body").one("click", "footer button", function () {
+            openPopup($("#rulesScreen"))
+            $("footer button").attr("id", "closeRules").text("Close")
 
-        // create close event handler
-        $("#closeRules").one("click", function () {
-            closePopup()
-            $(this).attr("id", "rules")
-            $("#retryText").text("How To Play")
-            instructionsHandler()
+            // create close event handler
+            $("body").one("click", "#closeRules", function () {
+                $("footer button").text("How To Play")
+                closePopup()
+                instructionsHandler()
+            })
         })
-    })
-}
+    }
 
 /*
  * Create retry button event handler
@@ -62,7 +61,9 @@ $(function() {
     // die screen retry button event handler
     $("#canvas").on("click", '.retry', function () {
         closePopup()
-        // TODO start game
+        init()
+        gameStartHandler()
+        instructionsHandler()
     })
-    instructionsHandler()
+
 })

@@ -1,6 +1,36 @@
 window.objArray = []
 var $player
 var playerSize
+var attempts
+
+function savePlay(uid, time, attempt) {
+    var saveTime = paddedMinutes + ":" + paddedSeconds;
+    $.ajax({
+        method:"post",
+        url:"api/",
+        data:{
+            "action": "saveAttempt",
+            "uid":uid,
+            "time":time,
+            "attempt":attempt
+        },
+        success: function(data) {
+            if (!data.success) {
+                errorMsg(saveTime, "OOPS! There has been an error saving your details<br>Click below to try again.")
+
+            }
+        },
+        error: function(data) {
+            errorMsg(saveTime, "There has been an error, please refresh your page and try again.")
+        }
+    })
+}
+
+function errorMsg(time, errorMsg){
+    openPopup($(".dieScreen"))
+    $(".notificationPopUp .insertTime").html(time)
+    $(".dieScreen #successMsg").html(errorMsg)
+}
 
 /**
 * Sets the player variables.
@@ -13,14 +43,15 @@ function init() {
         width: $player.width(),
         height: $player.height()
     }
-
 }
+
 
 /**
  * Sets an event listener for the keydown event, with gameStart() as the callback method.
  */
 function gameStartHandler() {
     $(document).on("keydown", gameStart)
+    resetTimer()
 }
 
 /**
@@ -42,9 +73,12 @@ function gameStart(e) {
                          //through the game area
             maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
                                                                               //(px/ms)
+        attempts = parseInt(user.curAttempt) + 1
+
         objArray = []
         $(document).off("keydown")
         moveSnowman()
+        startTimer()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
 }
@@ -270,8 +304,11 @@ function animate2(level, gameWidth, speed) {
  */
 function stopPlay() {
     $("#game .level").stop().remove()
+    stopTimer()
+    savePlay(user.uid, gamePlaySeconds, attempts)
     stopSnowman()
-    gameStartHandler()
+    openPopup($(".dieScreen"))
+    resetTimer()
 }
 
 /**

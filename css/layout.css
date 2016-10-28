@@ -76,6 +76,7 @@ form input {
 
 #hiddenPopups {
     display: none;
+    z-index: 2;
 }
 
 .dieScreen {
@@ -92,7 +93,11 @@ form input {
     padding: 20px;
 }
 
-#leaders th, tr, td {
+#leaders th {
+    padding-right: 90px;
+}
+
+#leaders td {
     padding: 10px 70px 0 10px;;
     font-size: 120%;
 }
