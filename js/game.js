@@ -4,6 +4,7 @@ var playerSize
 var attempts
 
 function savePlay(uid, time, attempt) {
+    var saveTime = paddedMinutes + ":" + paddedSeconds;
     $.ajax({
         method:"post",
         url:"api/",
@@ -14,18 +15,22 @@ function savePlay(uid, time, attempt) {
             "attempt":attempt
         },
         success: function(data) {
-            console.log(data)
             if (!data.success) {
-                // @todo show an error in the die screen
+                errorMsg(saveTime, "OOPS! There has been an error saving your details<br>Click below to try again.")
+
             }
         },
         error: function(data) {
-            // @todo show an error in the die screen
-            console.log(data)
+            errorMsg(saveTime, "There has been an error, please refresh your page and try again.")
         }
     })
 }
 
+function errorMsg(time, errorMsg){
+    openPopup($(".dieScreen"))
+    $(".notificationPopUp .insertTime").html(time)
+    $(".dieScreen #successMsg").html(errorMsg)
+}
 
 /**
 * Sets the player variables.
