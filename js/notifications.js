@@ -40,10 +40,8 @@ function closePopup(callback) {
 /*
  * Create click event handlers for how to play button
  */
-
     function instructionsHandler() {
-        $("#rules").on("click", function () {
-            console.log("sausages")
+        $("body").on("click", "footer button", function () {
             openPopup($("#rulesScreen"))
             $(this).attr("id", "closeRules")
             $("#retryText").text("Close")
@@ -57,7 +55,6 @@ function closePopup(callback) {
             })
         })
     }
-
 
 /*
  * Create retry button event handler

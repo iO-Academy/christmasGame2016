@@ -20,6 +20,7 @@ $(function() {
                             $(this).addClass("game")
                             init()
                             gameStartHandler()
+                            instructionsHandler()
                         })
                     }
                 },
