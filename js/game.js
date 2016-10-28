@@ -285,26 +285,28 @@ function collides(playerPos, playerSize, obsArray, screenPos) {
 
     var collides = false
 
+    playerPos.top = playerPos.top - 5 // remove the border of the #game div
+
     $.each(obsArray, function(i) {
         if(!this.isSnowman) {
             if (((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
-                (((playerPos.top - 5) + playerSize.height) > this.top) &&
+                (((playerPos.top) + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > playerPos.left) &&
-                ((this.top + this.height) > (playerPos.top - 5)))
+                ((this.top + this.height) > (playerPos.top)))
             {
                 collides = true
             }
         }
         else {
             if  ((((playerPos.left + playerSize.width) > (this.head.left + screenPos))
-                && (((playerPos.top - 5) + playerSize.height) > this.head.top)
+                && (((playerPos.top) + playerSize.height) > this.head.top)
                 && (((this.head.left + screenPos) + (this.head.radius*2)) > playerPos.left)
-                && ((this.head.top + (this.head.radius*2) > (playerPos.top - 5))))
+                && ((this.head.top + (this.head.radius*2) > (playerPos.top))))
                 ||
                 (( (playerPos.left + playerSize.width) > (this.body.left + screenPos))
-                && (((playerPos.top - 5) + playerSize.height) > this.body.top)
+                && (((playerPos.top) + playerSize.height) > this.body.top)
                 && (((this.body.left + screenPos) + (this.body.radius*2)) > playerPos.left)
-                && (this.body.top + (this.body.radius*2) > (playerPos.top - 5))))
+                && (this.body.top + (this.body.radius*2) > (playerPos.top))))
             {
                 collides = true
             }
