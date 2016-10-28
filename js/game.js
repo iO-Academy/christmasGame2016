@@ -288,23 +288,23 @@ function collides(playerPos, playerSize, obsArray, screenPos) {
     $.each(obsArray, function(i) {
         if(!this.isSnowman) {
             if (((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
-                ((playerPos.top + playerSize.height) > this.top) &&
+                (((playerPos.top - 5) + playerSize.height) > this.top) &&
                 (((this.left + screenPos) + this.width) > playerPos.left) &&
-                ((this.top + this.height) > playerPos.top))
+                ((this.top + this.height) > (playerPos.top - 5)))
             {
                 collides = true
             }
         }
         else {
             if  ((((playerPos.left + playerSize.width) > (this.head.left + screenPos))
-                && ((playerPos.top + playerSize.height) > this.head.top)
+                && (((playerPos.top - 5) + playerSize.height) > this.head.top)
                 && (((this.head.left + screenPos) + (this.head.radius*2)) > playerPos.left)
-                && ((this.head.top + (this.head.radius*2) > playerPos.top)))
+                && ((this.head.top + (this.head.radius*2) > (playerPos.top - 5))))
                 ||
                 (( (playerPos.left + playerSize.width) > (this.body.left + screenPos))
-                && ((playerPos.top + playerSize.height) > this.body.top)
+                && (((playerPos.top - 5) + playerSize.height) > this.body.top)
                 && (((this.body.left + screenPos) + (this.body.radius*2)) > playerPos.left)
-                && (this.body.top + (this.body.radius*2) > playerPos.top)))
+                && (this.body.top + (this.body.radius*2) > (playerPos.top - 5))))
             {
                 collides = true
             }
