@@ -9,6 +9,9 @@ var playerSize
 function init() {
 
     $player = $("#snowman")
+    $player.css('turtleHull', 'auto')
+    $player.pen(false)
+
     playerSize = {
         width: $player.width(),
         height: $player.height()
@@ -204,10 +207,8 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                     currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
                 }
 
-                console.log($player)
-
-                if ($player.touches('white')) {
-                    console.log('hit')
+                if ($player.touches($('#game .level > *'))) {
+                    stopPlay()
                 }
 
                 //if(collides($player.position(), playerSize, currentObjArray, screenPos)){
@@ -251,8 +252,8 @@ function animate2(level, gameWidth, speed) {
                 // remove the second level obs so it only detects on first level
                 var currentObjArray = objArray.slice(0, level.children().length)
 
-                if ($player.touches('white')) {
-                    console.log('hit')
+                if ($player.touches($('#game .level > *'))) {
+                    stopPlay()
                 }
 
                 //if(collides($player.position(), playerSize, currentObjArray, screenPos)){
