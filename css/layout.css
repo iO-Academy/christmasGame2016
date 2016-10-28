@@ -74,6 +74,10 @@ form input {
     box-shadow: 0 0 20px -2px rgba(255,255,255,0.94);
 }
 
+.notificationPopUp h1 {
+    color: #3a5b8c;
+}
+
 #hiddenPopups {
     display: none;
     z-index: 2;

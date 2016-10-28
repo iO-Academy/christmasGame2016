@@ -20,7 +20,6 @@ function leaderBoardGenerate() {
         url: "api/",
         data: obj,
         success: function(response) {
-            console.log(response)
             if (!response.success) {
                 $("#error").text(ajaxErrorMessage)
             } else {
@@ -40,7 +39,6 @@ function leaderBoardGenerate() {
             }
         },
         error: function(data) {
-            console.log(data)
             $("#error").text(ajaxErrorMessage)
         }
     })
