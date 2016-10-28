@@ -101,18 +101,16 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
 function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer) {
     var rand = Math.ceil(Math.random() * totalLevels), //a random integer between 1 and totalLevels (inclusive),
                                                        // indicating the next level to be loaded
-        $selectedLevel, //a jQuery OBJECT containing the next level (DOM OBJECT) to
-                        //be loaded into #game, determined by a CSS selector
-                        // specified to level 6 for first level in if statement below
-                        // otherwise contains rand.
+        $selectedLevel = $("#levelContainer .level" + rand), //a jQuery OBJECT containing the next level (DOM OBJECT) to
+                                                             //be loaded into #game, determined by a CSS selector
+                                                             // specified to level 6 for first level in if statement below
+                                                             // otherwise contains rand.
         $loadedLevel, //a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are currently
                       //loaded into #game
         levelSeparator = 150 //the gap between consecutive levels, chosen by trial and improvement (px)
 
     if(counter == 1) {
         $selectedLevel = $("#levelContainer .level" + 6)
-    } else {
-        $selectedLevel = $("#levelContainer .level" + rand)
     }
 
     $selectedLevel.clone().appendTo("#game")
