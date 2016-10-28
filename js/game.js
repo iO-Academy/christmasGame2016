@@ -1,6 +1,7 @@
 window.objArray = []
 var $player
 var playerSize
+var attempts
 
 function savePlay(uid, time, attempt) {
     $.ajax({
@@ -66,6 +67,8 @@ function gameStart(e) {
                          //through the game area
             maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
                                                                               //(px/ms)
+        attempts = parseInt(user.curAttempt) + 1
+
         objArray = []
         $(document).off("keydown")
         moveSnowman()
@@ -287,7 +290,7 @@ function animate2(level, gameWidth, speed) {
  */
 function stopPlay() {
     $("#game .level").stop().remove()
-
+    savePlay(user.uid, gamePlaySeconds, attempts)
     stopSnowman()
     gameStartHandler()
 }

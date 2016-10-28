@@ -1,5 +1,6 @@
 // set global variable for use in functions
 var timer
+var gamePlaySeconds
 
 /**
  * Calculates the number of minutes the counter has been running for.
@@ -32,7 +33,7 @@ function stopTimer() {
  * Starts the timer
  */
 function startTimer() {
-    var i = 0
+    gamePlaySeconds = 0
     var padLength = "00"
 
     timer = setInterval(function() {
@@ -41,10 +42,10 @@ function startTimer() {
         i++
 
         // turn game minutes to a string for correct display
-        var gameMinutes = getGameMinutes(i) + ''
+        var gameMinutes = getGameMinutes(gamePlaySeconds) + ''
 
         // turn game seconds to a string for correct display
-        var gameSeconds = getGameSeconds(i) + ''
+        var gameSeconds = getGameSeconds(gamePlaySeconds) + ''
 
         // add padding to minutes and seconds to return two digits for each
         var paddedMinutes = leftPad(gameMinutes, padLength)

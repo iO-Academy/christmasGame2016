@@ -1,3 +1,5 @@
+var user
+
 $(function() {
 
     $("#newUserReg").submit(function() {
@@ -12,10 +14,11 @@ $(function() {
                 method: "POST",
                 url: "api/",
                 data: obj,
-                success: function(data) {
-                    if (!data.success) {
+                success: function(response) {
+                    if (!response.success) {
                         $("#error").text(ajaxErrorMessage)
                     } else {
+                        user = response.data // save user data for later
                         $('#canvas').load("game.html", function() {
                             $(this).addClass("game")
                             init()
