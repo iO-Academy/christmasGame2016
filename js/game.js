@@ -16,11 +16,13 @@ function init() {
 
 }
 
+
 /**
  * Sets an event listener for the keydown event, with gameStart() as the callback method.
  */
 function gameStartHandler() {
     $(document).on("keydown", gameStart)
+    resetTimer()
 }
 
 /**
@@ -45,6 +47,7 @@ function gameStart(e) {
         objArray = []
         $(document).off("keydown")
         moveSnowman()
+        startTimer()
         gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
     }
 }
@@ -263,8 +266,10 @@ function animate2(level, gameWidth, speed) {
  */
 function stopPlay() {
     $("#game .level").stop().remove()
+    stopTimer()
     stopSnowman()
-    gameStartHandler()
+    openPopup($(".dieScreen"))
+    resetTimer()
 }
 
 /**

@@ -1,5 +1,8 @@
 // set global variable for use in functions
 var timer
+var padLength
+var paddedMinutes
+var paddedSeconds
 
 /**
  * Calculates the number of minutes the counter has been running for.
@@ -33,9 +36,12 @@ function stopTimer() {
  */
 function startTimer() {
     var i = 0
-    var padLength = "00"
+    padLength = "00"
+    paddedMinutes = 00
+    paddedSeconds = 00
+    $("#timer").html(paddedMinutes + ":" + paddedSeconds)
 
-    timer = setInterval(function() {
+    timer = setInterval(function () {
 
         // increase the counter by one on each 1000ms interval
         i++
@@ -47,10 +53,17 @@ function startTimer() {
         var gameSeconds = getGameSeconds(i) + ''
 
         // add padding to minutes and seconds to return two digits for each
-        var paddedMinutes = leftPad(gameMinutes, padLength)
-        var paddedSeconds = leftPad(gameSeconds, padLength)
-        
+        paddedMinutes = leftPad(gameMinutes, padLength)
+        paddedSeconds = leftPad(gameSeconds, padLength)
+
         // send times with leading zeroes out to the game screen every second
         $("#timer").html(paddedMinutes + ":" + paddedSeconds)
     }, 1000)
 }
+
+function resetTimer() {
+    i = 00
+    paddedMinutes = 0
+    paddedSeconds = 0
+}
+
