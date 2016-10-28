@@ -11,7 +11,7 @@
 }
 
 .level2 {
-    width: 1200px;
+    width: 1500px;
 }
 
 .level3 {
@@ -104,7 +104,7 @@
 .level2 .img3 {
     height: 72px;
     width: 50px;
-    bottom: 100px;
+    bottom: 125px;
     left: 200px;
 }
 
@@ -116,12 +116,12 @@
 .level2 .img5 {
     width: 200px;
     height: 288px;
-    left: 650px;
+    left: 750px;
 }
 
 .level2 .img6 {
     width: 120px;
-    left: 900px;
+    left: 1100px;
 }
 
 .level3 .img1,
