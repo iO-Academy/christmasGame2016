@@ -35,9 +35,6 @@ $(function() {
         return false
     })
 
-
-
-
 })
 function validateForm(name, email) {
     if (
