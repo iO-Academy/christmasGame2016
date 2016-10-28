@@ -210,8 +210,10 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
             duration: dur1,
             easing: "linear",
             complete: function() {
-                animate2(level, gameWidth, speed)
-                gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+                setTimeout(function() {
+                    animate2(level, gameWidth, speed)
+                    gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
+                }, 0)
             }
         })
 }
