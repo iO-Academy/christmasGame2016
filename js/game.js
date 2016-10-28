@@ -210,7 +210,7 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
             duration: dur1,
             easing: "linear",
             complete: function() {
-                setTimeout(function() {
+                setTimeout(function() {     //fixing the function stack call order
                     animate2(level, gameWidth, speed)
                     gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter)
                 }, 0)
