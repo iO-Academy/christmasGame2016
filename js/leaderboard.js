@@ -24,10 +24,13 @@ function leaderBoardGenerate() {
                 $("#error").text(ajaxErrorMessage)
             } else {
                 $("#hiddenPopups").append('<div id="leaderScreen"><img src="assets/tree.jpg" class="right" alt="christmas tree" id="leaderTree"><h1>Top Five Players</h1></div>')
-                $("#leaderScreen").append('<table id="leaders"><tr><th>Name</th><th>Time</th></tr></table>')
+                $("#leaderScreen").append('<table id="leaders"><tr><th>Position</th><th>Name</th><th>Time</th></tr></table>')
                 $.each(response.data.leaderboard, function (key, person) {
                     var leaderName = allTitleCase(person.name)
-                    $("#leaderScreen table").append("<tr><td>" + leaderName + "</td><td>" + person.time + "</td></tr>")
+                    var position = key+1
+                    // there should pribably be a function for this... dont do this at home kids!
+                    var time = leftPad((getGameMinutes(person.time) + ''), "00") + ":" + leftPad((getGameSeconds(person.time) + ''), "00");
+                    $("#leaderScreen table").append("<tr><td>" + position + ".</td><td>" + leaderName + "</td><td>" + time + "</td></tr>")
                 })
                 openPopup($("#leaderScreen"))
                 $("#leaderScreen").append('<button class="large wideButton" id="close" type="button">Close</button>')
