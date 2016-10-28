@@ -18,15 +18,40 @@ function openPopup($element) {
  * Hide popup
  */
 function closePopup() {
-    $("#game .notificationPopup").remove()
-    $(".notificationPopUp").fadeOut()
+    $(".notificationPopUp").fadeOut(function() {
+        $(this).remove()
+    })
 }
 
+/*
+ * Create click event handlers for how to play button
+ */
+function instructionsHandler() {
+    $("#rules").one("click", function () {
+        openPopup($("#rulesScreen"))
+        $(this).attr("id", "closeRules")
+        $("#retryText").text("Close")
+
+        // create close event handler
+        $("#closeRules").one("click", function () {
+            closePopup()
+            $(this).attr("id", "rules")
+            $("#retryText").text("How To Play")
+            instructionsHandler()
+        })
+    })
+}
+
+/*
+ * Create retry button event handler
+ */
 $(function() {
     // die screen retry button event handler
     $("#canvas").on("click", '.retry', function () {
         closePopup()
         // TODO start game
     })
+    instructionsHandler()
 })
+
 
