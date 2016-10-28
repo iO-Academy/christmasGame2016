@@ -50,6 +50,10 @@ form input {
     position: absolute;
     top: 50px;
     left: 500px;
+    -webkit-animation: flickerAnimation 2s infinite;
+    -moz-animation: flickerAnimation 2s infinite;
+    -o-animation: flickerAnimation 2s infinite;
+    animation: flickerAnimation 2s infinite;
 }
 
 .snowball.extraSmall {
@@ -60,6 +64,10 @@ form input {
     position: absolute;
     top: 50px;
     left: 600px;
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 3s infinite;
 }
 
 .snowball.small {
@@ -70,6 +78,10 @@ form input {
     position: absolute;
     top: 50px;
     left: 700px;
+    -webkit-animation: flickerAnimation 3s infinite;
+    -moz-animation: flickerAnimation 3s infinite;
+    -o-animation: flickerAnimation 3s infinite;
+    animation: flickerAnimation 4s infinite;
 }
 
 .snowball.big {
@@ -80,6 +92,10 @@ form input {
     position: absolute;
     top: 50px;
     left: 800px;
+    -webkit-animation: flickerAnimation 4s infinite;
+    -moz-animation: flickerAnimation 4s infinite;
+    -o-animation: flickerAnimation 4s infinite;
+    animation: flickerAnimation 5s infinite;
 }
 
 #m1 {
@@ -177,5 +193,34 @@ form input {
 #es5 {
     top: 500px;
     left: 820px;
+}
+
+
+@keyframes flickerAnimation {
+    0%   { opacity:0.9; }
+    50%  { opacity:0; }
+    100% { opacity:0.9; }
+}
+@-o-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+    50%  { opacity:0; }
+    100% { opacity:0.9; }
+}
+@-moz-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+    50%  { opacity:0; }
+    100% { opacity:0.9; }
+}
+@-webkit-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+    50%  { opacity:0; }
+    100% { opacity:0.9; }
+}
+.snowball {
+    -webkit-animation: flickerAnimation 2s infinite;
+    -moz-animation: flickerAnimation 2s infinite;
+    -o-animation: flickerAnimation 2s infinite;
+    animation: flickerAnimation 2s infinite;
+    box-shadow: 0 0 35px #ffffff;
 }
 
