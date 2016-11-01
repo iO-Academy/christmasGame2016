@@ -7,6 +7,7 @@
 *
 */
 function openPopup($element) {
+    $('.notificationPopUp').remove()
     var elementHtml = $element.clone(true, true).wrap("<div/>").parent().html()
     if ($("#game").length > 0) {
         $("#game").prepend('<div class="notificationPopUp"></div>')
@@ -42,6 +43,10 @@ function closePopup(callback) {
  */
     function instructionsHandler() {
         $("body").one("click", "footer button", function () {
+            $("#game .level").stop().remove()
+            stopTimer()
+            stopSnowman()
+            resetTimer()
             openPopup($("#rulesScreen"))
             $("footer button").attr("id", "closeRules").text("Close")
 
@@ -49,6 +54,9 @@ function closePopup(callback) {
             $("body").one("click", "#closeRules", function () {
                 $("footer button").text("How To Play")
                 closePopup()
+                $(document).off("keydown")
+                init()
+                gameStartHandler()
                 instructionsHandler()
             })
         })

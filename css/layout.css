@@ -98,7 +98,8 @@ form input {
 }
 
 #leaders th {
-    padding-right: 90px;
+    text-align: left;
+    padding: 10px;
 }
 
 #leaders td {
