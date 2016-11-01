@@ -101,7 +101,7 @@ function gameLoop(speed, maxSpeed, increaseFactor, initialSpeed, counter) {
                       //loaded into #game
         totalLevels = $("#levelContainer .level").length, //the total number of levels available for play
         gameWidth = $("#game").width(), //the width of the game area inside the white frame (px)
-        speedIncrementer = Math.floor(counter / totalLevels) //records the counter, modulo the total number of levels,
+        speedIncrementer = Math.floor(counter / 4) //records the counter, modulo the total number of levels,
                                                              //e.g. if there are 8 levels in total, this increments by
                                                              //1 every time 8 levels pass through the game area
 
