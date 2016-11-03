@@ -1,7 +1,4 @@
-window.objArray = []
 var $player
-var playerSize
-var attempts
 
 function savePlay(uid, time, attempt) {
     var saveTime = paddedMinutes + ":" + paddedSeconds;
@@ -37,12 +34,9 @@ function errorMsg(time, errorMsg){
 * is called when game page is loaded.
 */
 function init() {
-
     $player = $("#snowman")
-    playerSize = {
-        width: $player.width(),
-        height: $player.height()
-    }
+    $player.css('turtleHull', 'auto') // detect the outside shape of the element
+    $player.pen(false)
 }
 
 
@@ -74,8 +68,6 @@ function gameStart(e) {
             maxSpeed = initialSpeed * Math.pow(increaseFactor, increaseLimit) //the upper limit for level movement speed
                                                                               //(px/ms)
         attempts = parseInt(user.curAttempt) + 1
-
-        objArray = []
         $(document).off("keydown")
         moveSnowman()
         startTimer()
@@ -151,47 +143,6 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
     $loadedLevel = $("#game .level")
     $loadedLevel.last().css("left", gameWidth + levelSeparator)
 
-    $.each($loadedLevel.last().children(), function(){
-        var obj = this;
-        var $obj = $(this)
-        if($(obj).hasClass('snowman')){
-
-            objArray.push(
-                {
-                    top: $obj.position().top,
-                    left: $obj.position().left,
-                    width: $obj.width(),
-                    height: $obj.height(),
-                    isSnowman: true,
-                    //obj containing:   left/top positions relative to level position
-                    head: {
-                        top: $obj.position().top
-                        + ($('.head', obj).position().top),
-                        left: $obj.position().left
-                        + ($('.head', obj).position().left),
-                        radius: $('.head', obj).width() / 2
-                    },
-                    body: {
-                        top: $obj.position().top
-                        + ($('.body', obj).position().top),
-                        left: $obj.position().left,
-                        radius: $('.body', obj).width() / 2
-                    }
-                })
-        }
-        else {
-            objArray.push(
-                {
-                    top: $obj.position().top,
-                    left: $obj.position().left,
-                    width: $obj.width(),
-                    height: $obj.height(),
-                    isSnowman: false
-                }
-            )
-        }
-    })
-
     return $loadedLevel
 }
 
@@ -204,8 +155,6 @@ function load(gameWidth, totalLevels, counter, increaseFactor, speedIncrementer)
  * is aligned with the right edge of the game area.
  * During the animation, check for obstacle collision and if collides stop the animation.
  * On completion of the animation, animate2() and gameLoop() are called.
- *
- * COMMENT: currentObjArray created so screenPos is only applied to the obstacles within that animation
  *
  * @param $loadedLevel OBJECT a jQuery OBJECT whose properties 0 & 1 contain the two levels (DOM OBJECTS) that are
  * currently loaded into #game
@@ -223,16 +172,11 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
                                      //(DOM OBJECT), that which is to be animated
         levWidth = level.width(), //the width of level (px)
         dur1 = levWidth / speed, //the duration of animation (ms)
-        divisor = 8, //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
-        currentObjArray = objArray.slice($loadedLevel.first().children().length, objArray.length)
+        divisor = 8 //used to determine the length of the wait period: the wait is 1/divisor of the animation duration
 
     if (counter % totalLevels == 0) {
         var wait = (dur1/divisor) //the delay put onto the animation of the first level after a speed increase
         level.delay(wait)
-    }
-
-    if ($loadedLevel.length == 1) { // if its the first level, use first set of obstacles
-        currentObjArray = objArray
     }
 
     level.animate(
@@ -241,7 +185,7 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
         },
         {
             step: function(screenPos) {
-                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
+                if ($player.touches($('#game .level img, #game .level .snowman > *'))) {
                     stopPlay()
                 }
             },
@@ -262,9 +206,6 @@ function animate1($loadedLevel, gameWidth, speed, maxSpeed, increaseFactor, init
  * Animates level to transition leftwards from its current position (right-aligned with the game area) until its right edge
  * is aligned with the left edge of the game area (it's out of the play area).
  * During the animation, check for obstacle collision and if collides stop the animation.
- * On completeion of the animation, removes the animated level from #game and removes unloaded objects from objArray.
- *
- * COMMENT: currentObjArray created so screenPos is only applied to the obstacles within that animation
  *
  * @param level OBJECT a jQuery OBJECT whose property 0 contains the level (DOM OBJECT) that has just been passed through
  * animate1 and is to be animated here in animate2
@@ -275,23 +216,19 @@ function animate2(level, gameWidth, speed) {
     var levWidth = level.width(), //the width of level (px)
         dur2 = gameWidth / speed //the duration of animation (ms)
 
-    // remove the second level obs so it only detects on first level
-    var currentObjArray = objArray.slice(0, level.children().length)
-
     level.animate(
         {
             left: - levWidth
         },
         {
             step: function(screenPos) {
-                if(collides($player.position(), playerSize, currentObjArray, screenPos)){
+                if ($player.touches($('#game .level img, #game .level .snowman > *'))) {
                     stopPlay()
                 }
             },
             duration: dur2,
             easing: "linear",
             complete: function() {
-                objArray = objArray.slice(level.children().length, objArray.length)
                 level.remove()
             }
         })
@@ -309,50 +246,5 @@ function stopPlay() {
     stopSnowman()
     openPopup($(".dieScreen"))
     resetTimer()
-}
-
-/**
- * Checks if the player has collided with any of the obstacles currently loaded
- * If obstacle is snowman, checks if collides with head or body separately
- *
- * @param playerPos OBJECT contains player left and top values
- * @param playerSize OBJECT contains player width and height
- * @param obsArray ARRAY contains all obstacles currently loaded
- * @param screenPos NUMBER left value of level being animated
- *
- * @returns BOOLEAN is true if collides
- */
-function collides(playerPos, playerSize, obsArray, screenPos) {
-
-    var collides = false
-
-    playerPos.top = playerPos.top - 5 // remove the border of the #game div
-
-    $.each(obsArray, function(i) {
-        if(!this.isSnowman) {
-            if (((playerPos.left + playerSize.width) > (this.left + screenPos)) &&
-                (((playerPos.top) + playerSize.height) > this.top) &&
-                (((this.left + screenPos) + this.width) > playerPos.left) &&
-                ((this.top + this.height) > (playerPos.top)))
-            {
-                collides = true
-            }
-        }
-        else {
-            if  ((((playerPos.left + playerSize.width) > (this.head.left + screenPos))
-                && (((playerPos.top) + playerSize.height) > this.head.top)
-                && (((this.head.left + screenPos) + (this.head.radius*2)) > playerPos.left)
-                && ((this.head.top + (this.head.radius*2) > (playerPos.top))))
-                ||
-                (( (playerPos.left + playerSize.width) > (this.body.left + screenPos))
-                && (((playerPos.top) + playerSize.height) > this.body.top)
-                && (((this.body.left + screenPos) + (this.body.radius*2)) > playerPos.left)
-                && (this.body.top + (this.body.radius*2) > (playerPos.top))))
-            {
-                collides = true
-            }
-        }
-    })
-
-    return collides
+    gameStartHandler()
 }
