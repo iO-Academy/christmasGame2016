@@ -64,17 +64,17 @@ if (!empty($_POST['action'])) {
 
             $response['message'] = 'Missing parameters for this action';
 
-            if (!empty($_POST['uid']) && !empty('time') && !empty($_POST['attempt'])) {
+            if (!empty($_POST['uid']) && !empty($_POST['time']) && !empty($_POST['attempt'])) {
 
                 $user = $_POST['uid'];
                 $time = $_POST['time'];
                 $attempt = $_POST['attempt'];
 
-                if ((INT)$time > 3599 || strpos($time, ':') !== FALSE) {
+                if (((INT)$time > 3599 || (INT)$time < 8) || strpos($time, ':') !== FALSE) {
                     $response = array(
                         'success' => false,
                         'message' => 'Stop Cheating!',
-                        'data' => array($time)
+                        'data' => array('time' => $time)
                     );
                     break;
                 }
