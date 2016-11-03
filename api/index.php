@@ -17,6 +17,8 @@ if (!empty($_POST['action'])) {
                 $name = $_POST['userName'];
                 $email = $_POST['userEmail'];
 
+                $name = htmlspecialchars($name);
+
                 try {
                     $query = 'SELECT `users`.`id`, max(`attempt`) AS "attempts" FROM users LEFT JOIN `plays` ON users.id = plays.user WHERE `email` = :email;';
                     $conn = $db->prepare($query);
@@ -67,6 +69,15 @@ if (!empty($_POST['action'])) {
                 $user = $_POST['uid'];
                 $time = $_POST['time'];
                 $attempt = $_POST['attempt'];
+
+                if ((INT)$time > 3599 || strpos($time, ':') !== FALSE) {
+                    $response = array(
+                        'success' => false,
+                        'message' => 'Stop Cheating!',
+                        'data' => array($time)
+                    );
+                    break;
+                }
 
                 try {
 
